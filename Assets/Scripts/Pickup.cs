@@ -5,10 +5,12 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     public Transform player;
+    private new Rigidbody rigidbody;
 
     private void Update()
     {
-        if (GetComponent<Rigidbody>().useGravity == false)
+        rigidbody = GetComponent<Rigidbody>();
+        if (rigidbody.useGravity == false)
         {
             float rotation = -player.GetChild(0).localRotation.x;
             float yPos = 1.0f;
@@ -42,7 +44,9 @@ public class Pickup : MonoBehaviour
 
     void OnMouseDown()
     {
-        GetComponent<Rigidbody>().useGravity = false;
+        rigidbody.useGravity = false;
+        rigidbody.constraints = RigidbodyConstraints.FreezePosition;
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         transform.position = player.position + player.forward * 2;
         transform.parent = player.transform;
     }
@@ -50,6 +54,7 @@ public class Pickup : MonoBehaviour
     void OnMouseUp()
     {
         transform.parent = null;
-        GetComponent<Rigidbody>().useGravity = true;
+        rigidbody.useGravity = true;
+        rigidbody.constraints = RigidbodyConstraints.None;
     }
 }
