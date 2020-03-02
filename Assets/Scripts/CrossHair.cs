@@ -5,7 +5,7 @@ using UnityEngine;
 public class CrossHair : MonoBehaviour
 {
     public Texture2D crosshairImage;
-    private int crosshairSize = 50;
+    private int crosshairSize = 25;
 
     void OnGUI()
     {

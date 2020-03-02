@@ -5,7 +5,15 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     public Transform player;
+    public Texture2D tex;
+
     private new Rigidbody rigidbody;
+    GameObject[] inv;
+
+    void Start()
+    {
+        inv = player.GetComponent<Invetory>().invetory;
+    }
 
     private void Update()
     {
@@ -27,9 +35,7 @@ public class Pickup : MonoBehaviour
                     yPos = 0.5f;
                 }
             }
-
             transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
-
         }
     }
 
@@ -37,8 +43,30 @@ public class Pickup : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            player.GetComponent<Invetory>().invetory.Add(gameObject);
-            gameObject.SetActive(false);
+            for (int i = 0; i < inv.Length; i++)
+            {
+                if (inv[i] == null)
+                {
+                    inv[i] = gameObject;
+                    gameObject.SetActive(false);
+                    DisplayManager.Instance.SetImage(i, tex);
+                    break;
+                }
+            }
+        }
+
+        for (int i = 0; i < Invetory.keyCodes.Length; i++)
+        {
+            if (Input.GetKeyDown(Invetory.keyCodes[i]))
+            {
+                if (inv[i] == null)
+                {
+                    Invetory.pickupCD = 0.1f;
+                    inv[i] = gameObject;
+                    gameObject.SetActive(false);
+                    DisplayManager.Instance.SetImage(i, tex);
+                }
+            }
         }
     }
 

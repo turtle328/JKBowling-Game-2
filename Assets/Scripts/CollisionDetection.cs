@@ -40,7 +40,7 @@ public class CollisionDetection : MonoBehaviour
 
     void OnMouseDown()
     {
-        for (int i = 0; i < In.invetory.Count; i++)
+        for (int i = 0; i < In.invetory.Length; i++)
         {
             if (In.invetory[i] == key)
             {
