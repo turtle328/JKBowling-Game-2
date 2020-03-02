@@ -8,11 +8,11 @@ public class Pickup : MonoBehaviour
     public Texture2D tex;
 
     private new Rigidbody rigidbody;
-    GameObject[] inv;
+    List<GameObject> inv;
 
     void Start()
     {
-        inv = player.GetComponent<Invetory>().invetory;
+        inv = player.GetComponent<Inventory>().inventory;
     }
 
     private void Update()
@@ -43,7 +43,7 @@ public class Pickup : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            for (int i = 0; i < inv.Length; i++)
+            for (int i = 0; i < inv.Count; i++)
             {
                 if (inv[i] == null)
                 {
@@ -55,13 +55,13 @@ public class Pickup : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < Invetory.keyCodes.Length; i++)
+        for (int i = 0; i < Inventory.keyCodes.Length; i++)
         {
-            if (Input.GetKeyDown(Invetory.keyCodes[i]))
+            if (Input.GetKeyDown(Inventory.keyCodes[i]))
             {
                 if (inv[i] == null)
                 {
-                    Invetory.pickupCD = 0.1f;
+                    Inventory.pickupCD = 0.1f;
                     inv[i] = gameObject;
                     gameObject.SetActive(false);
                     DisplayManager.Instance.SetImage(i, tex);

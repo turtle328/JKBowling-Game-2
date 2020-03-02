@@ -9,7 +9,7 @@ public class CollisionDetection : MonoBehaviour
     public GameObject key;
     public GameObject open;
 
-    public Invetory In;
+    public Inventory In;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,9 +40,9 @@ public class CollisionDetection : MonoBehaviour
 
     void OnMouseDown()
     {
-        for (int i = 0; i < In.invetory.Length; i++)
+        for (int i = 0; i < In.inventory.Count; i++)
         {
-            if (In.invetory[i] == key)
+            if (In.inventory[i] == key)
             {
                 if (open.activeSelf == false)
                 {

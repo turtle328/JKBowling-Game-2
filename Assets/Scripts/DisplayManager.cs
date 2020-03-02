@@ -31,9 +31,9 @@ public class DisplayManager : MonoBehaviour
     {
         RectTransform placeHolderRect = placeholder.GetComponent<RectTransform>();
         float width = GetComponent<RectTransform>().rect.width - margins * 2;
-        float invWidth = width / Invetory.keyCodes.Length;
+        float invWidth = width / Inventory.keyCodes.Length;
 
-        for (int i = 0; i < Invetory.keyCodes.Length; i++)
+        for (int i = 0; i < Inventory.keyCodes.Length; i++)
         {
             GameObject temp = Instantiate(placeholder);
             float placeHolderRectX = invWidth * i + spaceBetween + margins;

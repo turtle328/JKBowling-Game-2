@@ -11,9 +11,11 @@ public class TimeShifter : MonoBehaviour
     public List<GameObject> world1Objects;
 
     public Dictionary<int, List<GameObject>> worldStateObjects;
+    public List<GameObject> inventory;
 
     void Start()
     {
+        inventory = GameObject.Find("FPSController").GetComponent<Inventory>().inventory;
         worldStateObjects = new Dictionary<int, List<GameObject>>();
         worldStateObjects.Add(0, world0Objects);
         worldStateObjects.Add(1, world1Objects);
@@ -30,13 +32,16 @@ public class TimeShifter : MonoBehaviour
 
     private void ToggleWorldState(int newWorldState)
     {
-        foreach ( GameObject obj in worldStateObjects[currentWorldState])
+        foreach (GameObject obj in worldStateObjects[currentWorldState])
         {
             obj.SetActive(false);
         }
-        foreach ( GameObject obj in worldStateObjects[newWorldState])
+        foreach (GameObject obj in worldStateObjects[newWorldState])
         {
-            obj.SetActive(true);
+            if (!inventory.Contains(obj))
+            {
+                obj.SetActive(true);
+            }
         }
 
         currentWorldState = newWorldState;
