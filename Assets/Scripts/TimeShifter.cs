@@ -29,20 +29,32 @@ public class TimeShifter : MonoBehaviour
             ToggleWorldState(newWorldState);
         }
     }
+    private void OnMouseDown()
+    {
+        int newWorldState = (currentWorldState + 1) % maxWorldState;
+        ToggleWorldState(newWorldState);
+    }
 
     private void ToggleWorldState(int newWorldState)
     {
-        foreach (GameObject obj in worldStateObjects[currentWorldState])
+        if (worldStateObjects[currentWorldState] != null)
         {
-            obj.SetActive(false);
-        }
-        foreach (GameObject obj in worldStateObjects[newWorldState])
-        {
-            if (!inventory.Contains(obj))
+            foreach (GameObject obj in worldStateObjects[currentWorldState])
             {
-                obj.SetActive(true);
+                obj.SetActive(false);
             }
         }
+        if (worldStateObjects[newWorldState] != null)
+        {
+            foreach (GameObject obj in worldStateObjects[newWorldState])
+            {
+                if (!inventory.Contains(obj))
+                {
+                    obj.SetActive(true);
+                }
+            }
+        }
+
 
         currentWorldState = newWorldState;
     }
