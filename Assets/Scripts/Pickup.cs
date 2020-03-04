@@ -57,6 +57,7 @@ public class Pickup : MonoBehaviour
             {
                 if (inv[i] == null)
                 {
+                    DisplayManager.Instance.SetHelpText("");
                     inv[i] = gameObject;
                     gameObject.SetActive(false);
                     DisplayManager.Instance.SetImage(i, tex);
@@ -71,6 +72,7 @@ public class Pickup : MonoBehaviour
             {
                 if (inv[i] == null)
                 {
+                    DisplayManager.Instance.SetHelpText("");
                     Inventory.pickupCD = 0.1f;
                     inv[i] = gameObject;
                     gameObject.SetActive(false);
