@@ -21,6 +21,16 @@ public class TimeShifter : MonoBehaviour
         worldStateObjects.Add(1, world1Objects);
     }
 
+    private void OnMouseEnter()
+    {
+        DisplayManager.Instance.SetHelpText("Press 'e' to change time.");
+    }
+
+    private void OnMouseExit()
+    {
+        DisplayManager.Instance.SetHelpText("");
+    }
+
     private void OnMouseOver()
     {
         if (Input.GetKeyDown(KeyCode.E))

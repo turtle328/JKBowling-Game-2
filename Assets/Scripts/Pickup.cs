@@ -39,6 +39,16 @@ public class Pickup : MonoBehaviour
         }
     }
 
+    private void OnMouseEnter()
+    {
+        DisplayManager.Instance.SetHelpText("Press 'e' to pick up " + gameObject.name);
+    }
+
+    private void OnMouseExit()
+    {
+        DisplayManager.Instance.SetHelpText("");
+    }
+
     private void OnMouseOver()
     {
         if (Input.GetKeyDown(KeyCode.E))
