@@ -12,6 +12,8 @@ public class TimeShifter : MonoBehaviour
 
     public Dictionary<int, List<GameObject>> worldStateObjects;
     public List<GameObject> inventory;
+    public Clock clock;
+    public GameObject sun;
 
     void Start()
     {
@@ -39,11 +41,13 @@ public class TimeShifter : MonoBehaviour
             ToggleWorldState(newWorldState);
         }
     }
+
+    /*
     private void OnMouseDown()
     {
         int newWorldState = (currentWorldState + 1) % maxWorldState;
         ToggleWorldState(newWorldState);
-    }
+    }*/
 
     private void ToggleWorldState(int newWorldState)
     {
@@ -63,6 +67,26 @@ public class TimeShifter : MonoBehaviour
                     obj.SetActive(true);
                 }
             }
+        }
+
+        // TODO: Update this to use a WorldState class rather than magic numbers
+        if ( newWorldState == 0 )
+        {
+            // Clock display
+            clock.hour = 11;
+            clock.minutes = 20;
+
+            // Sun is high
+            sun.transform.eulerAngles = new Vector3(115, 0, 0);
+        }
+        else if ( newWorldState == 1 )
+        {
+            // Clock display
+            clock.hour = 4;
+            clock.minutes = 45;
+
+            // Sun is setting
+            sun.transform.eulerAngles = new Vector3(169, 0, 0);
         }
 
 
