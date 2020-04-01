@@ -1,31 +1,95 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class TimeShifter : MonoBehaviour
 {
-    public int currentWorldState = 0;
-    public int maxWorldState = 2;
+    // ====================
+    //   World State Data
+    // ====================
 
-    public List<GameObject> world0Objects;
-    public List<GameObject> world1Objects;
+    public List<WorldState> WorldStates = new List<WorldState>();
+    public int currentWorldStateNum = 0;
 
-    public Dictionary<int, List<GameObject>> worldStateObjects;
-    public List<GameObject> inventory;
-    public Clock clock;
-    public GameObject sun;
+
+    // ========================
+    //   Time Management Data
+    // ========================
+
+    public Clock clock;         // The script associated with the clock on the wall
+    
 
     void Start()
-    {
-        inventory = GameObject.Find("FPSController").GetComponent<Inventory>().inventory;
-        worldStateObjects = new Dictionary<int, List<GameObject>>();
-        worldStateObjects.Add(0, world0Objects);
-        worldStateObjects.Add(1, world1Objects);
+    {   
+        WorldState ws00 = WorldState.GetWorldState(0);
+        ws00.UpdateGameObjectList();
+
+        WorldState ws01 = WorldState.GetWorldState(1);
+        ws01.UpdateGameObjectList();
+
+        WorldStates.Add(ws00);
+        WorldStates.Add(ws01);
+
+        clock.hour = ws00.clock_hour;
+        clock.minutes = ws00.clock_minute;
     }
+
+
+    /// <summary>
+    /// Updates the world to reflect the provided world state
+    /// </summary>
+    /// <param name="newWorldState"></param>
+    private void ChangeWorldState(int newWorldState)
+    {
+        if ( newWorldState >= 0 && newWorldState < WorldState.MAX_WORLDNUM )
+        {
+            WorldState oldWS = WorldStates[currentWorldStateNum];
+            WorldState newWS = WorldStates[newWorldState];
+            int direction = newWorldState - currentWorldStateNum;
+
+            foreach (GameObject obj in oldWS.keyItems)
+            {
+                if (obj != null)
+                {
+                    KeyItem k = obj.GetComponent<KeyItem>();
+                    if (k.attachedToWorldState)
+                    {
+                        obj.SetActive(false);
+                    }
+                }
+            }
+
+            foreach (GameObject obj in newWS.keyItems)
+            {
+                if (obj != null)
+                {
+                    KeyItem k = obj.GetComponent<KeyItem>();
+                    if (k.attachedToWorldState)
+                    {
+                        obj.SetActive(true);
+                    }
+                }
+            }
+
+            clock.UpdateTime(newWS.clock_hour, newWS.clock_minute);
+
+            // TODO: Update WorldStates to have information about the sun?
+            // 01: 115
+            // 02: 169
+
+            currentWorldStateNum = newWorldState;
+        }
+    }
+
+
+    // =================
+    //   INTERACTIVITY
+    // =================
 
     private void OnMouseEnter()
     {
-        DisplayManager.Instance.SetHelpText("Press 'e' to change time.");
+        DisplayManager.Instance.SetHelpText("Current World State: " + WorldStates[currentWorldStateNum].name);
     }
 
     private void OnMouseExit()
@@ -35,61 +99,21 @@ public class TimeShifter : MonoBehaviour
 
     private void OnMouseOver()
     {
+        int newWorldStateInd = currentWorldStateNum;
+
         if (Input.GetKeyDown(KeyCode.E))
         {
-            int newWorldState = (currentWorldState + 1) % maxWorldState;
-            ToggleWorldState(newWorldState);
+            newWorldStateInd = Mathf.Min((currentWorldStateNum + 1), WorldState.MAX_WORLDNUM);
         }
-    }
-
-    /*
-    private void OnMouseDown()
-    {
-        int newWorldState = (currentWorldState + 1) % maxWorldState;
-        ToggleWorldState(newWorldState);
-    }*/
-
-    private void ToggleWorldState(int newWorldState)
-    {
-        if (worldStateObjects[currentWorldState] != null)
+        else if ( Input.GetKeyDown(KeyCode.Q))
         {
-            foreach (GameObject obj in worldStateObjects[currentWorldState])
-            {
-                obj.SetActive(false);
-            }
+            newWorldStateInd = Mathf.Max((currentWorldStateNum - 1), 0);
         }
-        if (worldStateObjects[newWorldState] != null)
+
+        // We only want to mess with the scene when we need to
+        if ( newWorldStateInd != currentWorldStateNum )
         {
-            foreach (GameObject obj in worldStateObjects[newWorldState])
-            {
-                if (!inventory.Contains(obj))
-                {
-                    obj.SetActive(true);
-                }
-            }
+            ChangeWorldState(newWorldStateInd);
         }
-
-        // TODO: Update this to use a WorldState class rather than magic numbers
-        if ( newWorldState == 0 )
-        {
-            // Clock display
-            clock.hour = 11;
-            clock.minutes = 20;
-
-            // Sun is high
-            sun.transform.eulerAngles = new Vector3(115, 0, 0);
-        }
-        else if ( newWorldState == 1 )
-        {
-            // Clock display
-            clock.hour = 4;
-            clock.minutes = 45;
-
-            // Sun is setting
-            sun.transform.eulerAngles = new Vector3(169, 0, 0);
-        }
-
-
-        currentWorldState = newWorldState;
     }
 }

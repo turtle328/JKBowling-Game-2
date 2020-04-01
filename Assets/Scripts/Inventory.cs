@@ -40,6 +40,7 @@ public class Inventory : MonoBehaviour
 
         else
         {
+            /*
             for (int i = 0; i < keyCodes.Length; i++)
             {
                 if (Input.GetKeyDown(keyCodes[i]))
@@ -76,7 +77,7 @@ public class Inventory : MonoBehaviour
                     inventory[i] = null;
                     DisplayManager.Instance.SetImage(i, null);
                 }
-            }
+            } */
         }
     }
 }
