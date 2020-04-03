@@ -75,7 +75,7 @@ void Update()
         if (newHour > -1 && !Mathf.Approximately(hour, newHour))
         {
             hour = Mathf.Lerp(hour, newHour, 0.01f);
-            if ( Mathf.Abs(hour - newHour) < 0.3 )
+            if ( Mathf.Abs(hour - newHour) < 0.01 )
             {
                 hour = newHour;
             }
@@ -83,7 +83,7 @@ void Update()
         if (newMinutes > -1 && !Mathf.Approximately(minutes, newMinutes))
         {
             minutes = Mathf.Lerp(minutes, newMinutes, 0.01f);
-            if (Mathf.Abs(minutes - newMinutes) < 0.3)
+            if (Mathf.Abs(minutes - newMinutes) < 0.01)
             {
                 minutes = newMinutes;
             }

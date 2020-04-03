@@ -8,7 +8,7 @@ public class Pickup : MonoBehaviour
     public Texture2D tex;
 
     private new Rigidbody rigidbody;
-    List<GameObject> inv;
+    GameObject[] inv;
 
     void Start()
     {
@@ -17,6 +17,7 @@ public class Pickup : MonoBehaviour
 
     private void Update()
     {
+        /*
         rigidbody = GetComponent<Rigidbody>();
         if (rigidbody.useGravity == false)
         {
@@ -37,11 +38,12 @@ public class Pickup : MonoBehaviour
             }
             transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
         }
+        */
     }
 
     private void OnMouseEnter()
     {
-        DisplayManager.Instance.SetHelpText("Press 'e' to pick up " + gameObject.name);
+        DisplayManager.Instance.SetHelpText(gameObject.GetComponent<KeyItem>().prettyName);
     }
 
     private void OnMouseExit()
@@ -53,19 +55,32 @@ public class Pickup : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            for (int i = 0; i < inv.Count; i++)
+            int index = 0;
+            while (inv[index] != null)
             {
-                if (inv[i] == null)
+                index++;
+                if ( index >= Inventory.MAX_INVENTORY )
                 {
-                    DisplayManager.Instance.SetHelpText("");
-                    inv[i] = gameObject;
-                    gameObject.SetActive(false);
-                    DisplayManager.Instance.SetImage(i, tex);
                     break;
                 }
             }
+
+            if (index < Inventory.MAX_INVENTORY)
+            {
+                DisplayManager.Instance.SetHelpText("");
+                inv[index] = gameObject;
+                
+                KeyItem k = gameObject.GetComponent<KeyItem>();
+                k.attachedToWorldState = false;
+                DisplayManager.Instance.SetImage(index, k.inventoryImage);
+                
+                gameObject.SetActive(false);
+            }
         }
 
+        // We can bring this back if we really want it
+
+        /*
         for (int i = 0; i < Inventory.keyCodes.Length; i++)
         {
             if (Input.GetKeyDown(Inventory.keyCodes[i]))
@@ -80,8 +95,10 @@ public class Pickup : MonoBehaviour
                 }
             }
         }
+        */
     }
 
+    /*
     void OnMouseDown()
     {
         rigidbody.useGravity = false;
@@ -97,4 +114,5 @@ public class Pickup : MonoBehaviour
         rigidbody.useGravity = true;
         rigidbody.constraints = RigidbodyConstraints.None;
     }
+    */
 }

@@ -9,14 +9,24 @@ public class DisplayManager : MonoBehaviour
     private static DisplayManager instance;
     public static DisplayManager Instance { get { return instance; } }
 
-    public Texture2D emptyTexture;
-    public GameObject placeholder;
     public List<GameObject> images;
-    TextMeshProUGUI helpText;
-    float margins = 250;
-    float spaceBetween = 1.1f;
 
-    // Start is called before the first frame update
+    // TODO: Cleanup any of the above stuff that is unnecessary now
+
+
+    // Inventory Display
+    public GameObject inventoryBar;
+    public Sprite emptySprite;
+
+
+    // Text Display
+    public Image textDisplayMask;
+    public Text helpText;
+    private bool showText = false;
+    private bool transitioning = false;
+    private string nextText = "";
+
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -31,44 +41,97 @@ public class DisplayManager : MonoBehaviour
 
     void Start()
     {
-        helpText = GetComponentInChildren<TextMeshProUGUI>();
-        helpText.text = "";
-        RectTransform placeHolderRect = placeholder.GetComponent<RectTransform>();
-        float width = GetComponent<RectTransform>().rect.width - margins * 2;
-        float invWidth = width / (Inventory.keyCodes.Length - 1) * 1/spaceBetween;
-        if (invWidth > 100)
-        {
-            invWidth = 100;
-            spaceBetween = width / (invWidth * 9);
-        }
-        Vector2 rectSize = new Vector2(invWidth, invWidth);
-        placeHolderRect.sizeDelta = rectSize;
+        
+    }
 
-        for (int i = 0; i < Inventory.keyCodes.Length; i++)
+    void Update()
+    {
+        float fillAmt = textDisplayMask.fillAmount;
+        if ( showText )
         {
-            GameObject temp = Instantiate(placeholder);
-            float placeHolderRectX = (invWidth * i) * spaceBetween + margins;
-            Vector3 pos = new Vector3(placeHolderRectX, rectSize.y / 2 + 20);
-            temp.GetComponent<RectTransform>().SetPositionAndRotation(pos, Quaternion.identity);
-            temp.transform.SetParent(gameObject.transform);
-            images.Add(temp);
+            if (fillAmt < 0.995f)
+            {
+                float interval = 0.05f;
+                if (fillAmt > 0.5)
+                {
+                    interval = 0.07f;
+                }
+                if (fillAmt > 0.8)
+                {
+                    interval = 0.1f;
+                }
+
+                textDisplayMask.fillAmount = Mathf.Lerp(fillAmt, 1, interval);
+            }
+            else
+            {
+                textDisplayMask.fillAmount = 1;
+            }
+        }
+        else if (fillAmt > 0.01f)
+        {
+            float interval = 0.05f;
+            if (fillAmt < 0.5)
+            {
+                interval = 0.07f;
+            }
+            if (fillAmt < 0.2)
+            {
+                interval = 0.1f;
+            }
+            textDisplayMask.fillAmount = Mathf.Lerp(fillAmt, 0, interval);
+        }
+        else
+        {
+            textDisplayMask.fillAmount = 0;
+            if (transitioning)
+            {
+                helpText.text = nextText;
+                showText = true;
+                transitioning = false;
+            }
         }
     }
 
     public void SetHelpText(string text)
     {
-        helpText.text = text;
-    }
-
-    public void SetImage(int pos, Texture2D image)
-    {
-        if (image != null)
+        // An empty string indicates we are removing the display
+        if ( text == "" )
         {
-            images[pos].GetComponent<RawImage>().texture = image;
+            showText = false;
+            transitioning = false;
         }
         else
         {
-            images[pos].GetComponent<RawImage>().texture = emptyTexture;
+            if (showText)
+            {
+                showText = false;
+                transitioning = true;
+                nextText = text;
+            }
+            else
+            {
+                helpText.text = text;
+                showText = true;
+            }
+        }
+    }
+
+    public void SetImage(int pos, Sprite image)
+    {
+        // Inventory Bar
+        //  > slot0
+        //      > Item
+        //  > slot 1
+        //  > slot 2
+
+        if ( image == null )
+        {
+            inventoryBar.transform.GetChild(pos).GetChild(0).GetComponent<Image>().sprite = emptySprite; 
+        }
+        else
+        {
+            inventoryBar.transform.GetChild(pos).GetChild(0).GetComponent<Image>().sprite = image;
         }
     }
 }

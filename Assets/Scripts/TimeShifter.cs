@@ -33,6 +33,9 @@ public class TimeShifter : MonoBehaviour
 
         clock.hour = ws00.clock_hour;
         clock.minutes = ws00.clock_minute;
+
+        ChangeWorldState(0);
+        DisplayManager.Instance.SetHelpText("");
     }
 
 
@@ -73,12 +76,8 @@ public class TimeShifter : MonoBehaviour
             }
 
             clock.UpdateTime(newWS.clock_hour, newWS.clock_minute);
-
-            // TODO: Update WorldStates to have information about the sun?
-            // 01: 115
-            // 02: 169
-
             currentWorldStateNum = newWorldState;
+            DisplayManager.Instance.SetHelpText(newWS.name);
         }
     }
 
@@ -89,7 +88,7 @@ public class TimeShifter : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        DisplayManager.Instance.SetHelpText("Current World State: " + WorldStates[currentWorldStateNum].name);
+        DisplayManager.Instance.SetHelpText(WorldStates[currentWorldStateNum].name);
     }
 
     private void OnMouseExit()

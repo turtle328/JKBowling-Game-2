@@ -39,7 +39,7 @@ public class CollisionDetection : MonoBehaviour
 
     void OnMouseDown()
     {
-        for (int i = 0; i < In.inventory.Count; i++)
+        for (int i = 0; i < Inventory.MAX_INVENTORY; i++)
         {
             if (In.inventory[i] == key)
             {

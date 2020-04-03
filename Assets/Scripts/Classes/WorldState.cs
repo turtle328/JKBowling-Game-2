@@ -56,11 +56,17 @@ public class WorldState : IWorldState
     {
         keyItems.Clear();
 
-        foreach (string s in unique_objects)
+        // This is gross, but GameObject.Find() will not return
+        //  inactive objects. We have to do this instead.
+
+        GameObject[] gameObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+
+        foreach (GameObject obj in gameObjects)
         {
-            // Unique items MUST have unique names,
-            // or this won't work
-            keyItems.Add(GameObject.Find(s));
+            if (unique_objects.Contains(obj.name))
+            {
+                keyItems.Add(obj);
+            }
         }
     }
     

@@ -11,28 +11,48 @@ public class Inventory : MonoBehaviour
          KeyCode.Alpha4,
          KeyCode.Alpha5,
          KeyCode.Alpha6,
-         KeyCode.Alpha7,
+         KeyCode.Alpha7
+
+            // We can re-enable these if the inventory expands
+
+         /*
          KeyCode.Alpha8,
          KeyCode.Alpha9,
          KeyCode.Alpha0
+         */
      };
 
-    public List<GameObject> inventory;
-    public TimeShifter timeShifter;
+    public static readonly int MAX_INVENTORY = 7;
+
+    public GameObject[] inventory;
     public static float pickupCD = 0;
 
     // Start is called before the first frame update
     void Awake()
     {
-        for (int i = 0; i < keyCodes.Length; i++)
-        {
-            inventory.Add(null);
-        }
+        inventory = new GameObject[MAX_INVENTORY];
     }
 
     // Update is called once per frame
     void Update()
     {
+        for ( int i = 0; i < keyCodes.Length; i++ )
+        {
+            if ( Input.GetKeyDown(keyCodes[i]) )
+            {
+                if (inventory[i] != null)
+                {
+                    inventory[i].SetActive(true);
+                    inventory[i].transform.position = transform.position + transform.forward * 2;
+                    inventory[i] = null;
+                    DisplayManager.Instance.SetImage(i, null);
+                }
+            }
+        }
+
+
+
+        /*
         if (pickupCD > 0)
         {
             pickupCD -= Time.deltaTime;
@@ -40,7 +60,7 @@ public class Inventory : MonoBehaviour
 
         else
         {
-            /*
+            
             for (int i = 0; i < keyCodes.Length; i++)
             {
                 if (Input.GetKeyDown(keyCodes[i]))
@@ -77,8 +97,8 @@ public class Inventory : MonoBehaviour
                     inventory[i] = null;
                     DisplayManager.Instance.SetImage(i, null);
                 }
-            } */
-        }
+            }
+        }*/
     }
 }
 
