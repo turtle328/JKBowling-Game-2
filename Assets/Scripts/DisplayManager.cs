@@ -6,13 +6,8 @@ using UnityEngine.UI;
 
 public class DisplayManager : MonoBehaviour
 {
-    private static DisplayManager instance;
-    public static DisplayManager Instance { get { return instance; } }
-
-    public List<GameObject> images;
-
-    // TODO: Cleanup any of the above stuff that is unnecessary now
-
+    // Singleton Instance Variable
+    public static DisplayManager Instance { get; private set; }
 
     // Inventory Display
     public GameObject inventoryBar;
@@ -29,19 +24,19 @@ public class DisplayManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
     }
 
     void Start()
     {
-        
+        inventoryBar.transform.GetChild(0).GetComponent<Image>().color = Color.yellow;
     }
 
     void Update()
@@ -132,6 +127,24 @@ public class DisplayManager : MonoBehaviour
         else
         {
             inventoryBar.transform.GetChild(pos).GetChild(0).GetComponent<Image>().sprite = image;
+        }
+    }
+    
+    /// <summary>
+    /// Changes selected inventory position color to yellow if highlight is true.
+    /// Otherwise return it to white.
+    /// </summary>
+    /// <param name="pos">Position of the inventory index</param>
+    /// <param name="highlight">Highlight or turn color back to white?</param>
+    public void ToggleHighlight(int pos, bool highlight)
+    {
+        if (highlight)
+        {
+            inventoryBar.transform.GetChild(pos).GetComponent<Image>().color = Color.yellow;
+        }
+        else
+        {
+            inventoryBar.transform.GetChild(pos).GetComponent<Image>().color = Color.white;
         }
     }
 }

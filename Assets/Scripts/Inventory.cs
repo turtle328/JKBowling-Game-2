@@ -25,7 +25,9 @@ public class Inventory : MonoBehaviour
     public static readonly int MAX_INVENTORY = 7;
 
     public GameObject[] inventory;
-    public static float pickupCD = 0;
+
+    int curIndex = 0;
+    int prevIndex = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -36,69 +38,53 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // object select
         for ( int i = 0; i < keyCodes.Length; i++ )
         {
             if ( Input.GetKeyDown(keyCodes[i]) )
             {
-                if (inventory[i] != null)
-                {
-                    inventory[i].SetActive(true);
-                    inventory[i].transform.position = transform.position + transform.forward * 2;
-                    inventory[i] = null;
-                    DisplayManager.Instance.SetImage(i, null);
-                }
+                prevIndex = curIndex;
+                curIndex = i;
+
+                DisplayManager.Instance.ToggleHighlight(prevIndex, false);
+                DisplayManager.Instance.ToggleHighlight(curIndex, true);
             }
         }
 
+        // mouse wheel up
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) {
+            prevIndex = curIndex;
+            curIndex = (curIndex + 1) % MAX_INVENTORY;
 
-
-        /*
-        if (pickupCD > 0)
-        {
-            pickupCD -= Time.deltaTime;
+            DisplayManager.Instance.ToggleHighlight(prevIndex, false);
+            DisplayManager.Instance.ToggleHighlight(curIndex, true);
         }
 
-        else
+        // mouse wheel down
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
-            
-            for (int i = 0; i < keyCodes.Length; i++)
+            prevIndex = curIndex;
+            curIndex = curIndex - 1;
+            if (curIndex < 0)
             {
-                if (Input.GetKeyDown(keyCodes[i]))
-                {
-                    // dropping the item as long there is one at the #'s position
-
-                    if (inventory[i] != null)
-                    {
-                        inventory[i].SetActive(true);
-                        inventory[i].transform.position = transform.position + transform.forward * 2;
-                        if (timeShifter.currentWorldState == 0)
-                        {
-                            for (int y = 0; y < timeShifter.world1Objects.Count; y++)
-                            {
-                                if (timeShifter.world1Objects[y] == inventory[i])
-                                {
-                                    timeShifter.world1Objects.RemoveAt(y);
-                                    timeShifter.world0Objects.Add(inventory[i]);
-                                }
-                            }
-                        }
-                        else if (timeShifter.currentWorldState == 1)
-                        {
-                            for (int y = 0; y < timeShifter.world0Objects.Count; y++)
-                            {
-                                if (timeShifter.world0Objects[y] == inventory[i])
-                                {
-                                    timeShifter.world0Objects.RemoveAt(y);
-                                    timeShifter.world1Objects.Add(inventory[i]);
-                                }
-                            }
-                        }
-                    }
-                    inventory[i] = null;
-                    DisplayManager.Instance.SetImage(i, null);
-                }
+                curIndex = MAX_INVENTORY - 1;
             }
-        }*/
+
+            DisplayManager.Instance.ToggleHighlight(prevIndex, false);
+            DisplayManager.Instance.ToggleHighlight(curIndex, true);
+        }
+
+        // place/throw object
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (inventory[curIndex] != null)
+            {
+                inventory[curIndex].SetActive(true);
+                inventory[curIndex].transform.position = transform.position + transform.forward * 2;
+                inventory[curIndex] = null;
+                DisplayManager.Instance.SetImage(curIndex, null);
+            }
+        }
     }
 }
 

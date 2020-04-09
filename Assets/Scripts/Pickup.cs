@@ -77,42 +77,5 @@ public class Pickup : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
-
-        // We can bring this back if we really want it
-
-        /*
-        for (int i = 0; i < Inventory.keyCodes.Length; i++)
-        {
-            if (Input.GetKeyDown(Inventory.keyCodes[i]))
-            {
-                if (inv[i] == null)
-                {
-                    DisplayManager.Instance.SetHelpText("");
-                    Inventory.pickupCD = 0.1f;
-                    inv[i] = gameObject;
-                    gameObject.SetActive(false);
-                    DisplayManager.Instance.SetImage(i, tex);
-                }
-            }
-        }
-        */
     }
-
-    /*
-    void OnMouseDown()
-    {
-        rigidbody.useGravity = false;
-        rigidbody.constraints = RigidbodyConstraints.FreezePosition;
-        rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-        transform.position = player.position + player.forward * 2;
-        transform.parent = player.transform;
-    }
-
-    void OnMouseUp()
-    {
-        transform.parent = null;
-        rigidbody.useGravity = true;
-        rigidbody.constraints = RigidbodyConstraints.None;
-    }
-    */
 }
