@@ -17,38 +17,19 @@ public class Pickup : MonoBehaviour
 
     private void Update()
     {
-        /*
-        rigidbody = GetComponent<Rigidbody>();
-        if (rigidbody.useGravity == false)
-        {
-            float rotation = -player.GetChild(0).localRotation.x;
-            float yPos = 1.0f;
-            if (rotation > 0)
-            {
-                yPos += Mathf.Sin(rotation) * 6;
-            }
-            else
-            {
-                yPos += Mathf.Sin(rotation) * 2;
 
-                if (yPos < 0.5f)
-                {
-                    yPos = 0.5f;
-                }
-            }
-            transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
-        }
-        */
     }
 
     private void OnMouseEnter()
     {
         DisplayManager.Instance.SetHelpText(gameObject.GetComponent<KeyItem>().prettyName);
+        GetComponent<Renderer>().material.SetFloat("_Outline", 0.2f);
     }
 
     private void OnMouseExit()
     {
         DisplayManager.Instance.SetHelpText("");
+        GetComponent<Renderer>().material.SetFloat("_Outline", 0.0f);
     }
 
     private void OnMouseOver()

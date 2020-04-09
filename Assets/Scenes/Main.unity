@@ -253,7 +253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &88845906
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -284,7 +284,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8e7bf888803c63d4e9142bc9c3438437, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1509,7 +1509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b59b5a0ddc4262e4c8bdf719e5f17b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  images: []
   inventoryBar: {fileID: 1983748679}
   emptySprite: {fileID: 21300000, guid: 0b6a03f18513c4348a6ab746805d99d7, type: 3}
   textDisplayMask: {fileID: 2065126898}
