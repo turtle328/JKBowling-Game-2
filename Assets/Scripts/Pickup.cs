@@ -6,9 +6,11 @@ public class Pickup : MonoBehaviour
 {
     public Transform player;
     public Texture2D tex;
+    public bool throwable = false;
 
     private new Rigidbody rigidbody;
     GameObject[] inv;
+
 
     void Start()
     {

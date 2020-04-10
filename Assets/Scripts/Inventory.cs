@@ -79,8 +79,29 @@ public class Inventory : MonoBehaviour
         {
             if (inventory[curIndex] != null)
             {
+                // grab object to check if it's a throwable
+                Pickup p = inventory[curIndex].GetComponent<Pickup>();
+
+                p.transform.position = transform.position + transform.forward * 2;
+
+                if (p.throwable)
+                // throw it
+                {
+                    // get rigidbody of object
+                    Rigidbody rb = p.GetComponent<Rigidbody>();
+                    RaycastHit hit;
+                    if (Physics.Raycast(transform.position, transform.GetChild(0).forward, out hit))
+                    {
+                        rb.velocity = hit.point - transform.position;
+                        
+                        // Debug code
+                        //GameObject debugSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                        //debugSphere.transform.position = hit.point;
+                        //Debug.Log(hit.point);
+                    }
+                }
+
                 inventory[curIndex].SetActive(true);
-                inventory[curIndex].transform.position = transform.position + transform.forward * 2;
                 inventory[curIndex] = null;
                 DisplayManager.Instance.SetImage(curIndex, null);
             }
