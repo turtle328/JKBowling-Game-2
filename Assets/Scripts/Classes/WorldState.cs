@@ -56,18 +56,29 @@ public class WorldState : IWorldState
     {
         keyItems.Clear();
 
+        // this works for inactive items also
+        Transform items = GameObject.FindWithTag("KeyItems").GetComponentInChildren<Transform>(true);
+
+        foreach (Transform item in items)
+        {
+            if (unique_objects.Contains(item.name))
+            {
+                keyItems.Add(item.gameObject);
+            }
+        }
+
         // This is gross, but GameObject.Find() will not return
         //  inactive objects. We have to do this instead.
 
-        GameObject[] gameObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+        //GameObject[] gameObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
 
-        foreach (GameObject obj in gameObjects)
-        {
-            if (unique_objects.Contains(obj.name))
-            {
-                keyItems.Add(obj);
-            }
-        }
+        //foreach (GameObject obj in gameObjects)
+        //{
+        //    if (unique_objects.Contains(obj.name))
+        //    {
+        //        keyItems.Add(obj);
+        //    }
+        //}
     }
-    
+
 }
