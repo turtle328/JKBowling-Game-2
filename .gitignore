@@ -58,3 +58,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Prevent house obj from being added to repos
+houseinterior02.obj
