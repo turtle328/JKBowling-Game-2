@@ -6,7 +6,7 @@ using System.IO;
 public abstract class IWorldState
 {
     // TODO: update this as max world states increases
-    public static readonly int MAX_WORLDNUM = 2;
+    public static readonly int MAX_WORLDNUM = 3;
 
     public static WorldState GetWorldState(int worldNum)
     {
@@ -40,6 +40,7 @@ public class WorldState : IWorldState
     public int clock_hour;
     public int clock_minute;
     public string name;
+    public string object_container_name;
 
     /// <summary>
     /// Iterates through the unique_objects list
@@ -57,28 +58,23 @@ public class WorldState : IWorldState
         keyItems.Clear();
 
         // this works for inactive items also
-        Transform items = GameObject.FindWithTag("KeyItems").GetComponentInChildren<Transform>(true);
+        Transform containers = GameObject.Find("WorldObjects").GetComponentInChildren<Transform>(true);
 
-        foreach (Transform item in items)
+        foreach (Transform container in containers )
         {
-            if (unique_objects.Contains(item.name))
+            if ( container.name == object_container_name )
             {
-                keyItems.Add(item.gameObject);
+                Transform items = container.GetComponentInChildren<Transform>(true);
+                foreach (Transform item in items)
+                {
+                    if (unique_objects.Contains(item.name))
+                    {
+                        keyItems.Add(item.gameObject);
+                    }
+                }
+                return;
             }
         }
-
-        // This is gross, but GameObject.Find() will not return
-        //  inactive objects. We have to do this instead.
-
-        //GameObject[] gameObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
-
-        //foreach (GameObject obj in gameObjects)
-        //{
-        //    if (unique_objects.Contains(obj.name))
-        //    {
-        //        keyItems.Add(obj);
-        //    }
-        //}
     }
 
 }

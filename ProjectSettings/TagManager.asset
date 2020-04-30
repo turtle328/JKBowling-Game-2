@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - KeyItems
+  - Boulder
+  - world1Objects
+  - world2Objects
+  - world3Objects
   layers:
   - Default
   - TransparentFX

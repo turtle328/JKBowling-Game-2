@@ -28,8 +28,12 @@ public class TimeShifter : MonoBehaviour
         WorldState ws01 = WorldState.GetWorldState(1);
         ws01.UpdateGameObjectList();
 
+        WorldState ws02 = WorldState.GetWorldState(2);
+        ws02.UpdateGameObjectList();
+
         WorldStates.Add(ws00);
         WorldStates.Add(ws01);
+        WorldStates.Add(ws02);
 
         clock.hour = ws00.clock_hour;
         clock.minutes = ws00.clock_minute;

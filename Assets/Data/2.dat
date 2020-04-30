@@ -1,0 +1,12 @@
+{
+	"unique_objects" : 
+		[
+			"diary",
+			"lockbox"
+		],
+	
+	"clock_hour" : 20,
+	"clock_minute" : 15,
+	"name": "Third World",
+	"object_container_name" : "world3Objects"
+}
