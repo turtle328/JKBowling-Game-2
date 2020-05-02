@@ -16,7 +16,7 @@ public class DisplayManager : MonoBehaviour
 
     // Text Display
     public Image textDisplayMask;
-    public Text helpText;
+    public TMP_Text helpText;
     private bool showText = false;
     private bool transitioning = false;
     private string nextText = "";
