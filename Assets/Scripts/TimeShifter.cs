@@ -79,6 +79,9 @@ public class TimeShifter : MonoBehaviour
                 }
             }
 
+            oldWS.containerObject.SetActive(false);
+            newWS.containerObject.SetActive(true);
+
             clock.UpdateTime(newWS.clock_hour, newWS.clock_minute);
             currentWorldStateNum = newWorldState;
             DisplayManager.Instance.SetHelpText(newWS.name);
@@ -91,11 +94,12 @@ public class TimeShifter : MonoBehaviour
     /// </summary>
     private void ResetWorldStates()
     {
+        WorldStates[0].containerObject.SetActive(true);
         for (int i = 1; i < WorldState.MAX_WORLDNUM; i++)
         {
             foreach (GameObject k in WorldStates[i].keyItems)
             {
-                k.SetActive(false);
+                WorldStates[i].containerObject.SetActive(false);
             }
         }
     }

@@ -41,6 +41,7 @@ public class WorldState : IWorldState
     public int clock_minute;
     public string name;
     public string object_container_name;
+    public GameObject containerObject;
 
     /// <summary>
     /// Iterates through the unique_objects list
@@ -64,6 +65,7 @@ public class WorldState : IWorldState
         {
             if ( container.name == object_container_name )
             {
+                containerObject = container.gameObject;
                 Transform items = container.GetComponentInChildren<Transform>(true);
                 foreach (Transform item in items)
                 {
