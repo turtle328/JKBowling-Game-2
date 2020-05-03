@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Scene3Manager : MonoBehaviour
 {
 
-    public Texture2D page1;
-    public Texture2D page2;
-    public Texture2D page3;
+    public GameObject page1;
+    public GameObject page2;
+    public GameObject page3;
+    public GameObject lastPage;
     const int pageWidth = 675;
     const int pageHeight = 900;
     public Texture2D puzzle1;
@@ -20,24 +22,22 @@ public class Scene3Manager : MonoBehaviour
     public Texture2D puzzle3;
     private int puzzle3Width = 600;
     private int puzzle3Height = 50;
+    public Texture2D minusCode;
+    public Texture2D plusCode;
+    private int mpWidth = 200;
+    private int mpHeight = 50;
     public Texture2D p2_1;
-    private int p2_1Width = 675;
-    private int p2_1Height = 900;
+    private int p2_1Width = 25;
+    private int p2_1Height = 25;
     public Texture2D p2_2;
-    private int p2_2Width = 675;
-    private int p2_2Height = 900;
+    private int p2_2Width = 25;
+    private int p2_2Height = 25;
     public Texture2D p2_3;
-    private int p2_3Width = 675;
-    private int p2_3Height = 900;
+    private int p2_3Width = 25;
+    private int p2_3Height = 25;
     public Texture2D p2_4;
-    private int p2_4Width = 675;
-    private int p2_4Height = 900;
-    public Texture2D minus;
-    private int minusWidth = 50;
-    private int minusHeight = 10;
-    public Texture2D plus;
-    private int plusWidth = 675;
-    private int plusHeight = 900;
+    private int p2_4Width = 25;
+    private int p2_4Height = 25;
     public Texture2D phone;
     private int phoneWidth = 150;
     private int phoneHeight = 320;
@@ -51,24 +51,78 @@ public class Scene3Manager : MonoBehaviour
     //private int prevButtonWidth = 675;
     //private int prevButtonHeight = 900;
     public GameObject player;
+    public GameObject diary;
 
-    public int page = 2;
+    public int page = 0;
 
     public GameObject prevButton;
     public GameObject nextButton;
 
+    public GameObject inputP1_1;
+    public GameObject inputP1_2;
+    public GameObject inputP1_3;
+    public GameObject inputP1_4;
+    public GameObject inputP1_Answer;
+
+    public GameObject inputP2_Answer;
+
+    public GameObject inputP3_1;
+    public GameObject inputP3_2;
+    public GameObject inputP3_3;
+    public GameObject inputP3_4;
+    public GameObject inputP3_Answer;
+
+    public GameObject inputFinal;
+
+    public GameObject plusB0;
+    public GameObject plusB1;
+    public GameObject plusB2;
+    public GameObject minusB0;
+    public GameObject minusB1;
+    public GameObject minusB2;
     // Start is called before the first frame update
     void Start()
     {
-        player.GetComponent<FirstPersonController>().enabled = false;
+        SetFalse();
+        nextButton.SetActive(false);
+        prevButton.SetActive(false);
+        inputFinal.SetActive(false);
 
-        
+        ButtonPMFalse();
+
+        Input1False();
+        Input2False();
+        Input3False();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            player.GetComponent<FirstPersonController>().enabled = false;
+            nextButton.SetActive(true);
+            prevButton.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            page = 1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.O) || page == 0)
+        {
+            player.GetComponent<FirstPersonController>().enabled = true;
+            SetFalse();
+            Input1False();
+            Input2False();
+            Input3False();
+            ButtonPMFalse();
+            nextButton.SetActive(false);
+            prevButton.SetActive(false);
+            inputFinal.SetActive(false);
+            Cursor.visible = false;
+            page = 0;
+        }
     }
 
 
@@ -78,50 +132,216 @@ public class Scene3Manager : MonoBehaviour
         {
             float xMin1 = (Screen.width / 2) - pageWidth / 2;
             float yMin1 = (Screen.height / 2) - pageHeight / 2;
-            GUI.DrawTexture(new Rect(xMin1, yMin1, pageWidth, pageHeight), page1);
+            //GUI.DrawTexture(new Rect(xMin1, yMin1, pageWidth, pageHeight), page1);
+            SetFalse();
+            page1.SetActive(true);
+            inputP1_1.SetActive(true);
+            inputP1_2.SetActive(true);
+            inputP1_3.SetActive(true);
+            inputP1_4.SetActive(true);
+            minusB0.SetActive(true);
+            minusB1.SetActive(true);
+            minusB2.SetActive(true);
+            inputP1_Answer.SetActive(true);
+
+            Input2False();
+            Input3False();
+            inputFinal.SetActive(false);
+
             GUI.DrawTexture(new Rect(xMin1 + 30, yMin1 + 700, puzzle1Width, puzzle1Height), puzzle1);
+            GUI.DrawTexture(new Rect(xMin1 + 30, yMin1 + 620, mpWidth, mpHeight), minusCode);
+            GUI.DrawTexture(new Rect(xMin1 + 300, yMin1 + 620, mpWidth, mpHeight), plusCode);
         }
         else if (page == 2)
         {
             float xMin2 = (Screen.width / 2) - pageWidth / 2;
             float yMin2 = (Screen.height / 2) - pageHeight / 2;
-            GUI.DrawTexture(new Rect(xMin2, yMin2, pageWidth, pageHeight), page2);
-            GUI.DrawTexture(new Rect(yMin2 + 680, yMin2 + 780, puzzle2Width, puzzle2Height), puzzle2);
-            GUI.DrawTexture(new Rect(yMin2 + 700, yMin2 + 450, phoneWidth, phoneHeight), phone);
-            GUI.DrawTexture(new Rect(yMin2 + 1100, yMin2 + 650, signCodeWidth, signCodeHeight), signCode);
+            //GUI.DrawTexture(new Rect(xMin2, yMin2, pageWidth, pageHeight), page2);
+            SetFalse();
+            page2.SetActive(true);
+            inputP2_Answer.SetActive(true);
+
+            Input1False();
+            Input3False();
+            inputFinal.SetActive(false);
+            ButtonPMFalse();
+
+            GUI.DrawTexture(new Rect(xMin2, yMin2 + 780, puzzle2Width, puzzle2Height), puzzle2);
+            GUI.DrawTexture(new Rect(xMin2 + 60, yMin2 + 450, phoneWidth, phoneHeight), phone);
+            GUI.DrawTexture(new Rect(xMin2 + 400, yMin2 + 650, signCodeWidth, signCodeHeight), signCode);
+
         }
         else if (page == 3)
         {
             float xMin3 = (Screen.width / 2) - pageWidth / 2;
             float yMin3 = (Screen.height / 2) - pageHeight / 2;
-            GUI.DrawTexture(new Rect(xMin3, yMin3, pageWidth, pageHeight), page3);
+            //GUI.DrawTexture(new Rect(xMin3, yMin3, pageWidth, pageHeight), page3);
+            SetFalse();
+            inputP3_1.SetActive(true);
+            inputP3_2.SetActive(true);
+            inputP3_3.SetActive(true);
+            inputP3_4.SetActive(true);
+            inputP3_Answer.SetActive(true);
+
+            Input1False();
+            Input2False();
+            inputFinal.SetActive(false);
+
+            page3.SetActive(true);
             GUI.DrawTexture(new Rect(yMin3 + 680, yMin3 + 700, puzzle3Width, puzzle3Height), puzzle3);
+            GUI.DrawTexture(new Rect(xMin3 + 150, yMin3 + 20, p2_1Width, p2_1Height), p2_1);
+            GUI.DrawTexture(new Rect(xMin3 + 460, yMin3 + 180, p2_2Width, p2_2Height), p2_2);
+            GUI.DrawTexture(new Rect(xMin3 + 600, yMin3 + 800, p2_3Width, p2_3Height), p2_3);
+            GUI.DrawTexture(new Rect(xMin3 + 20, yMin3 + 600, p2_4Width, p2_4Height), p2_4);
+        }
+        else if (page == 4)
+        {
+            Input1False();
+            Input2False();
+            Input3False();
+            SetFalse();
+            ButtonPMFalse();
+            lastPage.SetActive(true);
+            inputFinal.SetActive(true);
+        }
+    }
+
+
+    private void SetFalse()
+    {
+        page1.SetActive(false);
+        page2.SetActive(false);
+        page3.SetActive(false);
+        lastPage.SetActive(false);
+    }
+
+    private void Input1False()
+    {
+        inputP1_1.SetActive(false);
+        inputP1_2.SetActive(false);
+        inputP1_3.SetActive(false);
+        inputP1_4.SetActive(false);
+        inputP1_Answer.SetActive(false);
+    }
+
+    private void Input2False()
+    {
+        inputP2_Answer.SetActive(false);
+    }
+
+    private void Input3False()
+    {
+        inputP3_1.SetActive(false);
+        inputP3_2.SetActive(false);
+        inputP3_3.SetActive(false);
+        inputP3_4.SetActive(false);
+        inputP3_Answer.SetActive(false);
+    }
+
+
+    public void SwitchSign0()
+    {
+        if (minusB0.activeSelf)
+        {
+            plusB0.SetActive(true);
+            minusB0.SetActive(false);
+        }
+        else
+        {
+            plusB0.SetActive(false);
+            minusB0.SetActive(true);
+        }
+    }
+    public void SwitchSign1()
+    {
+        if (minusB1.activeSelf)
+        {
+            plusB1.SetActive(true);
+            minusB1.SetActive(false);
+        }
+        else
+        {
+            plusB1.SetActive(false);
+            minusB1.SetActive(true);
+        }
+    }
+
+    public void SwitchSign2()
+    {
+        if (minusB2.activeSelf)
+        {
+            plusB2.SetActive(true);
+            minusB2.SetActive(false);
+        }
+        else
+        {
+            plusB2.SetActive(false);
+            minusB2.SetActive(true);
+        }
+    }
+
+    private void ButtonPMFalse()
+    {
+        plusB0.SetActive(false);
+        plusB1.SetActive(false);
+        plusB2.SetActive(false);
+        minusB0.SetActive(false);
+        minusB1.SetActive(false);
+        minusB2.SetActive(false);
+    }
+
+    public void Puzzl1Answer(string answer)
+    {
+        if (answer == "8")
+        {
+            nextPage();
+        }
+    }
+
+    public void Puzzl2Answer(string answer)
+    {
+        if (answer == "17")
+        {
+            nextPage();
+        }
+    }
+
+    public void Puzzl3Answer(string answer)
+    {
+        if (answer == "97")
+        {
+            nextPage();
+        }
+    }
+
+    public void FinalAnswer(string answer)
+    {
+        if (answer == "08/17/97")
+        {
+            page = 0;
+        }
+    }
+    public void nextPage()
+    {
+        if (page == 4)
+        {
+            page = 1;
+        }
+        else
+        {
+            page++;
         }
 
-
-
-
-
-
-
-        //float xMin = (Screen.width / 2) - pageWidth / 2;
-        //float yMin = (Screen.height / 2) - pageHeight / 2;
-        //if (page == 1)
-        //{
-        //    GUI.DrawTexture(new Rect(xMin, xMin, pageWidth, pageHeight), page1);
-        //    GUI.DrawTexture(new Rect(yMin + 30, yMin + 700, puzzleWidth, puzzleHeight), puzzle1);
-        //}
-        //else if (page == 2)
-        //{
-        //    GUI.DrawTexture(new Rect(xMin, xMin, pageWidth, pageHeight), page2);
-        //    GUI.DrawTexture(new Rect(yMin + 30, yMin + 700, puzzleWidth, puzzleHeight), puzzle2);
-        //}
-        //else if (page == 3)
-        //{
-        //    GUI.DrawTexture(new Rect(xMin, xMin, pageWidth, pageHeight), page3);
-        //    GUI.DrawTexture(new Rect(yMin + 30, yMin + 700, puzzleWidth, puzzleHeight), puzzle3);
-        //}
-
-
+    }
+    public void prevPage()
+    {
+        if (page == 1)
+        {
+            page = 4;
+        }
+        else
+        {
+            page--;
+        }
     }
 }
