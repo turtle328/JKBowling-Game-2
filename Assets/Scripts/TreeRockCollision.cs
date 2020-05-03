@@ -27,7 +27,7 @@ public class TreeRockCollision : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (inv.GetCurrentItem() == rock)
+        if (rock != null && inv.GetCurrentItem() == rock)
         {
             mat.SetFloat("_Outline", 0.1f);
             DisplayManager.Instance.SetHelpText("Press 'T' to throw rock");
@@ -42,6 +42,7 @@ public class TreeRockCollision : MonoBehaviour
 
     private IEnumerator DestroyRock()
     {
+        Destroy(rock.GetComponent<Pickup>());
         yield return new WaitForSeconds(1);
         Destroy(rock);
     }
