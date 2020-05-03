@@ -54,7 +54,12 @@ public class Inventory : MonoBehaviour
         // mouse wheel up
         if (Input.GetAxis("Mouse ScrollWheel") > 0f) {
             prevIndex = curIndex;
-            curIndex = (curIndex + 1) % MAX_INVENTORY;
+            curIndex = curIndex - 1;
+            if (curIndex < 0)
+            {
+                curIndex = MAX_INVENTORY - 1;
+            }
+            
 
             DisplayManager.Instance.ToggleHighlight(prevIndex, false);
             DisplayManager.Instance.ToggleHighlight(curIndex, true);
@@ -64,11 +69,7 @@ public class Inventory : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             prevIndex = curIndex;
-            curIndex = curIndex - 1;
-            if (curIndex < 0)
-            {
-                curIndex = MAX_INVENTORY - 1;
-            }
+            curIndex = (curIndex + 1) % MAX_INVENTORY;
 
             DisplayManager.Instance.ToggleHighlight(prevIndex, false);
             DisplayManager.Instance.ToggleHighlight(curIndex, true);
@@ -109,6 +110,17 @@ public class Inventory : MonoBehaviour
                 DisplayManager.Instance.SetImage(curIndex, null);
             }
         }
+    }
+
+    public GameObject GetCurrentItem()
+    {
+        return inventory[curIndex];
+    }
+
+    public void RemoveCurrentItem()
+    {
+        inventory[curIndex] = null;
+        DisplayManager.Instance.SetImage(curIndex, null);
     }
 }
 
