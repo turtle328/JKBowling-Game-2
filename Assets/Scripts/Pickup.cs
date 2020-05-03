@@ -6,6 +6,7 @@ public class Pickup : MonoBehaviour
 {
     public Transform player;
     public bool throwable = false;
+    public float outlineWidth = 0.2f;
 
     private new Rigidbody rigidbody;
     GameObject[] inv;
@@ -24,7 +25,7 @@ public class Pickup : MonoBehaviour
     private void OnMouseEnter()
     {
         DisplayManager.Instance.SetHelpText(gameObject.GetComponent<KeyItem>().prettyName);
-        GetComponent<Renderer>().material.SetFloat("_Outline", 0.2f);
+        GetComponent<Renderer>().material.SetFloat("_Outline", outlineWidth);
     }
 
     private void OnMouseExit()
@@ -37,6 +38,17 @@ public class Pickup : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            DisplayManager.Instance.SetHelpText("");
+            GetComponent<Renderer>().material.SetFloat("_Outline", 0.0f);
+
+            // does it have key controller? then give key to player
+            KeyController key = GetComponent<KeyController>();
+            if (key != null)
+            {
+                key.GiveKey();
+                return;
+            }
+
             int index = 0;
             while (inv[index] != null)
             {
@@ -49,7 +61,6 @@ public class Pickup : MonoBehaviour
 
             if (index < Inventory.MAX_INVENTORY)
             {
-                DisplayManager.Instance.SetHelpText("");
                 inv[index] = gameObject;
                 
                 KeyItem k = gameObject.GetComponent<KeyItem>();

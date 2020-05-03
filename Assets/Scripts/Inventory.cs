@@ -90,10 +90,13 @@ public class Inventory : MonoBehaviour
                     // get rigidbody of object
                     Rigidbody rb = p.GetComponent<Rigidbody>();
                     RaycastHit hit;
-                    if (Physics.Raycast(transform.position, transform.GetChild(0).forward, out hit))
+                    Vector3 forward = transform.GetChild(0).forward;
+                    if (Physics.Raycast(transform.position + forward, forward, out hit))
                     {
-                        rb.velocity = hit.point - transform.position;
-                        
+                        rb.velocity = (hit.point - transform.position) * 2;
+
+                        rb.velocity = Vector3.ClampMagnitude(rb.velocity, 20);
+
                         // Debug code
                         //GameObject debugSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                         //debugSphere.transform.position = hit.point;
