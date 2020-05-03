@@ -719,12 +719,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 119282634}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &127135036 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1271990268568534924, guid: cb482484447340e4db87f13d8cf60f94,
-    type: 3}
-  m_PrefabInstance: {fileID: 1761609360}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &143902002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,6 +1281,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4196,7 +4198,7 @@ Transform:
   - {fileID: 326604784}
   - {fileID: 90832216}
   - {fileID: 393426262}
-  - {fileID: 1761609361}
+  - {fileID: 2881280874074147599}
   - {fileID: 973363563}
   - {fileID: 995582804}
   - {fileID: 509303967}
@@ -5875,10 +5877,10 @@ MonoBehaviour:
   thirdPlaceStand: {fileID: 326604780}
   RaceSolution:
   - {fileID: 243552183}
-  - {fileID: 127135036}
+  - {fileID: 1271990267075361052}
   - {fileID: 723631018}
   currentRacePositions:
-  - {fileID: 127135036}
+  - {fileID: 1271990267075361052}
   - {fileID: 723631018}
   - {fileID: 243552183}
 --- !u!1001 &808638758
@@ -7141,7 +7143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mngr: {fileID: 802265927}
   isActive: 1
-  currentCar: {fileID: 127135036}
+  currentCar: {fileID: 1271990267075361052}
   inventory: {fileID: 100527733}
   height: 1.689
   place: 0
@@ -12498,37 +12500,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2881280872580976031, guid: cb482484447340e4db87f13d8cf60f94,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2881280872580976031, guid: cb482484447340e4db87f13d8cf60f94,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2881280872580976031, guid: cb482484447340e4db87f13d8cf60f94,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4292181055036794265, guid: cb482484447340e4db87f13d8cf60f94,
-        type: 3}
-      propertyPath: attachedToWorldState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4292181055036794265, guid: cb482484447340e4db87f13d8cf60f94,
-        type: 3}
-      propertyPath: prettyName
-      value: Toy Car
-      objectReference: {fileID: 0}
-    - target: {fileID: 4292181055036794265, guid: cb482484447340e4db87f13d8cf60f94,
-        type: 3}
-      propertyPath: inventoryImage
-      value: 
-      objectReference: {fileID: 21300000, guid: e688ccb47b0251f488833f1bd9b42cf9,
-        type: 3}
     - target: {fileID: 6276322251467837816, guid: cb482484447340e4db87f13d8cf60f94,
         type: 3}
       propertyPath: player
@@ -12536,12 +12507,6 @@ PrefabInstance:
       objectReference: {fileID: 100527739}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb482484447340e4db87f13d8cf60f94, type: 3}
---- !u!4 &1761609361 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2881280872580976031, guid: cb482484447340e4db87f13d8cf60f94,
-    type: 3}
-  m_PrefabInstance: {fileID: 1761609360}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1775099353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14213,6 +14178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Throwable Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 130346, guid: dccde8c6a3cd4eb42a85f9777da665db, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 465056, guid: dccde8c6a3cd4eb42a85f9777da665db, type: 3}
       propertyPath: m_LocalPosition.x
       value: 123.237
@@ -14259,15 +14228,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 465056, guid: dccde8c6a3cd4eb42a85f9777da665db, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7353201
+      value: 0.4795831
       objectReference: {fileID: 0}
     - target: {fileID: 465056, guid: dccde8c6a3cd4eb42a85f9777da665db, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.7353201
+      value: 0.4795831
       objectReference: {fileID: 0}
     - target: {fileID: 465056, guid: dccde8c6a3cd4eb42a85f9777da665db, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.7353201
+      value: 0.4795831
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dccde8c6a3cd4eb42a85f9777da665db, type: 3}
@@ -14319,7 +14288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 100527739}
   throwable: 1
-  outlineWidth: 0.2
+  outlineWidth: 0.1
 --- !u!54 &1930873380
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16216,6 +16185,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146921567}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1271990267075361052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1271990268568534924, guid: cb482484447340e4db87f13d8cf60f94,
+    type: 3}
+  m_PrefabInstance: {fileID: 1761609360}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1732255982884086569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16525,6 +16500,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1342687042961448657, guid: f46662206e455474ca67c2603e6c1952,
     type: 3}
   m_PrefabInstance: {fileID: 2384315015451213481}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2881280874074147599 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2881280872580976031, guid: cb482484447340e4db87f13d8cf60f94,
+    type: 3}
+  m_PrefabInstance: {fileID: 1761609360}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5722221769194002418
 PrefabInstance:

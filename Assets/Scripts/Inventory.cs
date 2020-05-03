@@ -94,16 +94,23 @@ public class Inventory : MonoBehaviour
                     RaycastHit hit;
                     Vector3 forward = transform.GetChild(0).forward;
                     Vector3 up = transform.GetChild(0).up;
-                    if (Physics.Raycast(transform.position + up, forward, out hit))
-                    {
-                        rb.velocity = (hit.point - transform.position) * 2;
+                    Vector3 origin = transform.position + up;
 
-                        rb.velocity = Vector3.ClampMagnitude(rb.velocity, 20);
+                    if (Physics.Raycast(origin, forward, out hit))
+                    {
+                        p.transform.position = transform.position + transform.up * 0.8f;
+                        Vector3 vel = (hit.point - transform.position) * 2;
+                        rb.velocity = Vector3.ClampMagnitude(vel, 20);
 
                         // Debug code
                         //GameObject debugSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                        //Destroy(debugSphere.GetComponent<SphereCollider>());
                         //debugSphere.transform.position = hit.point;
-                        //Debug.Log(hit.point);
+
+                        //GameObject originSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                        //Destroy(originSphere.GetComponent<SphereCollider>());
+                        //originSphere.transform.position = origin;
+                        //originSphere.GetComponent<Renderer>().material.color = Color.red;
                     }
                 }
 

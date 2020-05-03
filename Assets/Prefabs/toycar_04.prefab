@@ -27,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271990268568534924}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -11.860984, y: 1.5053225, z: 3.2338724}
-  m_LocalScale: {x: 0.3, y: 1.5, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,20 +59,20 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf23a1a334dfed5449bc1e9d7b3aa928, type: 2}
-  - {fileID: 2100000, guid: 893426e6beb1f2c4c89135b41bac2dac, type: 2}
-  - {fileID: 2100000, guid: 342c26a198d362a45974286492d2ff95, type: 2}
-  - {fileID: 2100000, guid: ca875181789c3de4fb022ea71e5da3b7, type: 2}
-  - {fileID: 2100000, guid: 4be00d0632eab6d46b5860b99a87456a, type: 2}
-  - {fileID: 2100000, guid: 21112d8d86e17dd409efe5bfa7a54002, type: 2}
-  - {fileID: 2100000, guid: 40b124ed99c322843b079ccb3d35abf8, type: 2}
-  - {fileID: 2100000, guid: 1e418f79f290e8b43bf453c6f36ec2b2, type: 2}
-  - {fileID: 2100000, guid: 8231bb9854e6c3e4290a70ac26ef8d1b, type: 2}
-  - {fileID: 2100000, guid: 2806913418e788e4b8c3297d4e2e83f9, type: 2}
-  - {fileID: 2100000, guid: 674898088467d49498ca8d66874a5405, type: 2}
-  - {fileID: 2100000, guid: ff8a896497c56b94e844cc43db6a5c22, type: 2}
-  - {fileID: 2100000, guid: 2e9882ea52711a040af43d2c93896716, type: 2}
-  - {fileID: 2100000, guid: ab4299ff337f57b489c3525f95091c36, type: 2}
+  - {fileID: -8498072568288798726, guid: 611f3aa9030776449972a4df00f2eac8, type: 3}
+  - {fileID: -2063684936051385217, guid: 611f3aa9030776449972a4df00f2eac8, type: 3}
+  - {fileID: 6034957751646507721, guid: 611f3aa9030776449972a4df00f2eac8, type: 3}
+  - {fileID: 3655396658102750768, guid: 611f3aa9030776449972a4df00f2eac8, type: 3}
+  - {fileID: 8854556384885412123, guid: 611f3aa9030776449972a4df00f2eac8, type: 3}
+  - {fileID: 4222158141284680105, guid: 611f3aa9030776449972a4df00f2eac8, type: 3}
+  - {fileID: 8368722655750445499, guid: 611f3aa9030776449972a4df00f2eac8, type: 3}
+  - {fileID: 515537222168705832, guid: 611f3aa9030776449972a4df00f2eac8, type: 3}
+  - {fileID: 4352284914225708712, guid: 611f3aa9030776449972a4df00f2eac8, type: 3}
+  - {fileID: 5650526492999649590, guid: 611f3aa9030776449972a4df00f2eac8, type: 3}
+  - {fileID: -1360991219368177298, guid: 611f3aa9030776449972a4df00f2eac8, type: 3}
+  - {fileID: 8748892135801146194, guid: 611f3aa9030776449972a4df00f2eac8, type: 3}
+  - {fileID: -8369911508649120504, guid: 611f3aa9030776449972a4df00f2eac8, type: 3}
+  - {fileID: -985004103133357394, guid: 611f3aa9030776449972a4df00f2eac8, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,9 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28cd41d1889a084baf06ef46d49a0d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prettyName: Toy Car
-  attachedToWorldState: 0
-  inventoryImage: {fileID: 21300000, guid: e688ccb47b0251f488833f1bd9b42cf9, type: 3}
+  prettyName: Key Item
+  attachedToWorldState: 1
+  inventoryImage: {fileID: 0}
 --- !u!114 &6276322251467837816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,4 +122,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   throwable: 0
-  outlineWidth: 0.2
