@@ -39,7 +39,7 @@ public class TimeShifter : MonoBehaviour
         clock.minutes = ws00.clock_minute;
 
         // set starting world state, set to 0 when not debugging
-        SetWorldState(2);
+        SetWorldState(0);
 
         DisplayManager.Instance.SetHelpText("");
     }
@@ -108,6 +108,7 @@ public class TimeShifter : MonoBehaviour
         {
             if (i == worldState)
             {
+                WorldStates[i].containerObject.SetActive(true);
                 continue;
             }
             WorldStates[i].containerObject.SetActive(false);

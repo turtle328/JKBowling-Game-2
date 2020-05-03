@@ -60,9 +60,9 @@ public class Inventory : MonoBehaviour
                 curIndex = MAX_INVENTORY - 1;
             }
             
-
             DisplayManager.Instance.ToggleHighlight(prevIndex, false);
             DisplayManager.Instance.ToggleHighlight(curIndex, true);
+            DisplayManager.Instance.SetHelpText("");
         }
 
         // mouse wheel down
@@ -73,6 +73,7 @@ public class Inventory : MonoBehaviour
 
             DisplayManager.Instance.ToggleHighlight(prevIndex, false);
             DisplayManager.Instance.ToggleHighlight(curIndex, true);
+            DisplayManager.Instance.SetHelpText("");
         }
 
         // place/throw object
@@ -121,6 +122,7 @@ public class Inventory : MonoBehaviour
     {
         inventory[curIndex] = null;
         DisplayManager.Instance.SetImage(curIndex, null);
+        DisplayManager.Instance.SetHelpText("");
     }
 }
 

@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class ActionFigurePoser : MonoBehaviour
 {
+    Puzzle02Manager _mngr;
+    public bool isActive = true;
+
     Animator animator;
+    public int standNum = 0;
     int selectedPose = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+        _mngr = Puzzle02Manager.Instance;
     }
 
     // Update is called once per frame
@@ -21,7 +26,10 @@ public class ActionFigurePoser : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        DisplayManager.Instance.SetHelpText("Press E to change pose");
+        if (isActive)
+        {
+            DisplayManager.Instance.SetHelpText("Press E to change pose");
+        }
     }
 
     private void OnMouseExit()
@@ -31,12 +39,17 @@ public class ActionFigurePoser : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (isActive)
         {
-            selectedPose++;
-            selectedPose %= 3;
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                selectedPose++;
+                selectedPose %= 3;
 
-            animator.SetInteger("SelectedPose", selectedPose);
+                animator.SetInteger("SelectedPose", selectedPose);
+
+                _mngr.OnChangedMannequinPuzzle(standNum, selectedPose);
+            }
         }
     }
 }
