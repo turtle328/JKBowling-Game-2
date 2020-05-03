@@ -17,10 +17,10 @@ public class DisplayManager : MonoBehaviour
     // Text Display
     public Image textDisplayMask;
     public TMP_Text helpText;
+    public TMP_Text eventText;
     private bool showText = false;
     private bool transitioning = false;
     private string nextText = "";
-
 
     private void Awake()
     {
@@ -41,51 +41,8 @@ public class DisplayManager : MonoBehaviour
 
     void Update()
     {
-        float fillAmt = textDisplayMask.fillAmount;
-        if ( showText )
-        {
-            if (fillAmt < 0.995f)
-            {
-                float interval = 0.05f;
-                if (fillAmt > 0.5)
-                {
-                    interval = 0.07f;
-                }
-                if (fillAmt > 0.8)
-                {
-                    interval = 0.1f;
-                }
-
-                textDisplayMask.fillAmount = Mathf.Lerp(fillAmt, 1, interval);
-            }
-            else
-            {
-                textDisplayMask.fillAmount = 1;
-            }
-        }
-        else if (fillAmt > 0.01f)
-        {
-            float interval = 0.05f;
-            if (fillAmt < 0.5)
-            {
-                interval = 0.07f;
-            }
-            if (fillAmt < 0.2)
-            {
-                interval = 0.1f;
-            }
-            textDisplayMask.fillAmount = Mathf.Lerp(fillAmt, 0, interval);
-        }
-        else
-        {
-            textDisplayMask.fillAmount = 0;
-            if (transitioning)
-            {
-                helpText.text = nextText;
-                showText = true;
-                transitioning = false;
-            }
-        }
+        //textDisplayMask.fillAmount = 1;
+        AnimateText();
     }
 
     public void SetHelpText(string text)
@@ -147,4 +104,61 @@ public class DisplayManager : MonoBehaviour
             inventoryBar.transform.GetChild(pos).GetComponent<Image>().color = Color.white;
         }
     }
+
+    public void TriggerEventText(string text)
+    {
+        Animator textAnim = eventText.GetComponent<Animator>();
+        eventText.text = text;
+        textAnim.SetTrigger("TriggerText");
+    }
+
+    private void AnimateText()
+    {
+        float fillAmt = textDisplayMask.fillAmount;
+        if (showText)
+        {
+            if (fillAmt < 0.995f)
+            {
+                float interval = 0.05f;
+                if (fillAmt > 0.5)
+                {
+                    interval = 0.07f;
+                }
+                if (fillAmt > 0.8)
+                {
+                    interval = 0.1f;
+                }
+
+                textDisplayMask.fillAmount = Mathf.Lerp(fillAmt, 1, interval);
+            }
+            else
+            {
+                textDisplayMask.fillAmount = 1;
+            }
+        }
+        else if (fillAmt > 0.01f)
+        {
+            float interval = 0.05f;
+            if (fillAmt < 0.5)
+            {
+                interval = 0.07f;
+            }
+            if (fillAmt < 0.2)
+            {
+                interval = 0.1f;
+            }
+            textDisplayMask.fillAmount = Mathf.Lerp(fillAmt, 0, interval);
+        }
+        else
+        {
+            textDisplayMask.fillAmount = 0;
+            if (transitioning)
+            {
+                helpText.text = nextText;
+                showText = true;
+                transitioning = false;
+            }
+        }
+    }
+
 }

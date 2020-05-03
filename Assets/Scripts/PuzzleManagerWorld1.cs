@@ -16,6 +16,7 @@ public class PuzzleManagerWorld1 : MonoBehaviour
     public GameObject tree;
     public GameObject key;
     public GameObject door;
+    DoorController dc;
 
     // timeshifter reference to shift world once puzzle is done
     public TimeShifter ts;
@@ -33,10 +34,25 @@ public class PuzzleManagerWorld1 : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        dc = door.GetComponent<DoorController>();
+    }
+
+    public void Update()
+    {
+        // once door is opened for the first time mark puzzle complete and shift world by one
+        if (!puzzleComplete && dc.firstDoorOpened)
+        {
+            puzzleComplete = true;
+            DisplayManager.Instance.TriggerEventText("The world seems different...");
+            ts.incrementWorldState();
+        }
+    }
+
     // drops key from tree, to be called when tree detections a collsion with the rock
     public void DropKey()
     {
         key.GetComponent<Rigidbody>().useGravity = true;
-        Destroy(throwableRock.GetComponent<Pickup>());
     }
 }

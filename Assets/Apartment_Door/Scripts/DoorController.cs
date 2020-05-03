@@ -10,6 +10,7 @@ public class DoorController : MonoBehaviour
 
     private bool playerInZone;                  //Check if the player is in the zone
     private bool doorOpened;                    //Check if door is currently opened or not
+    public bool firstDoorOpened;
 
     private Animation doorAnim;
     private BoxCollider doorCollider;           //To enable the player to go through the door if door is opened else block him
@@ -30,6 +31,7 @@ public class DoorController : MonoBehaviour
     {
         gotKey = false;
         doorOpened = false;                     //Is the door currently opened
+        firstDoorOpened = false;                // When door is opened for the first time
         playerInZone = false;                   //Player not in zone
         doorState = DoorState.Closed;           //Starting state is door closed
 
@@ -102,6 +104,7 @@ public class DoorController : MonoBehaviour
             {
                 doorAnim.Play("Door_Open");
                 doorState = DoorState.Opened;
+                firstDoorOpened = true;
             }
 
             if (doorState == DoorState.Opened && !doorAnim.isPlaying)

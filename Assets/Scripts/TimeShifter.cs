@@ -84,8 +84,16 @@ public class TimeShifter : MonoBehaviour
 
             clock.UpdateTime(newWS.clock_hour, newWS.clock_minute);
             currentWorldStateNum = newWorldState;
+            
             DisplayManager.Instance.SetHelpText(newWS.name);
         }
+    }
+
+    // to be called by puzzle manager 1 to set the world state the 2nd
+    public void incrementWorldState()
+    {
+        ChangeWorldState(currentWorldStateNum + 1);
+        DisplayManager.Instance.SetHelpText("");
     }
 
     /// <summary>
