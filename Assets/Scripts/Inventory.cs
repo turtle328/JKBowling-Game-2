@@ -93,7 +93,8 @@ public class Inventory : MonoBehaviour
                     Rigidbody rb = p.GetComponent<Rigidbody>();
                     RaycastHit hit;
                     Vector3 forward = transform.GetChild(0).forward;
-                    if (Physics.Raycast(transform.position + forward, forward, out hit))
+                    Vector3 up = transform.GetChild(0).up;
+                    if (Physics.Raycast(transform.position + up, forward, out hit))
                     {
                         rb.velocity = (hit.point - transform.position) * 2;
 

@@ -11,7 +11,8 @@ public class KeyController : MonoBehaviour
     {
         DC.gotKey = true;
         txtToDisplay.gameObject.SetActive(true);
-        txtToDisplay.text = "Kitchen Key Acquired";
+        string name = GetComponent<KeyItem>().prettyName;
+        txtToDisplay.text = "Acquired " + name;
         gameObject.SetActive(false);
     }
 }

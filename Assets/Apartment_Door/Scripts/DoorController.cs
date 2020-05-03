@@ -122,6 +122,7 @@ public class DoorController : MonoBehaviour
             {
                 doorAnim.Play("Door_Open");
                 doorState = DoorState.Opened;
+                firstDoorOpened = true;
             }
         }
     }
