@@ -103,6 +103,7 @@ public class TimeShifter : MonoBehaviour
     /// </summary>
     private void SetWorldState(int worldState)
     {
+        currentWorldStateNum = worldState;
         for (int i = 0; i < WorldState.MAX_WORLDNUM; i++)
         {
             if (i == worldState)
