@@ -34,7 +34,10 @@ Material:
     m_Floats:
     - _Cull: 2
     - _Cutoff: 0.33
+    - _Glossiness: 0.5
+    - _Metallic: 0
     - _Outline: 0
+    - _OutlineWidth: 0.03
     - _Shininess: 0.125
     - _WindQuality: 4
     m_Colors:
