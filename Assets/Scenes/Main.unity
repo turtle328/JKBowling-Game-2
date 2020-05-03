@@ -3513,22 +3513,14 @@ MonoBehaviour:
   page2: {fileID: 451991069}
   page3: {fileID: 582725156}
   lastPage: {fileID: 1164434554}
-  puzzle1: {fileID: 2800000, guid: e03fc633296da5f419d14a4586ae5815, type: 3}
-  puzzle2: {fileID: 2800000, guid: fa5b93d50a9b0ec49bbd2250c1637ff6, type: 3}
-  puzzle3: {fileID: 2800000, guid: b90becdedad812646ba57a8c1dde7e3e, type: 3}
-  minusCode: {fileID: 2800000, guid: b1b5b138cd7d622429a1aa2b1efe2c16, type: 3}
-  plusCode: {fileID: 2800000, guid: 545e12c74dcba0d4bba859bcc1a26969, type: 3}
-  p2_1: {fileID: 2800000, guid: a5f1e0094c5afa8479f5de331b500875, type: 3}
-  p2_2: {fileID: 2800000, guid: a9a532fca71447348b799f636cee994e, type: 3}
-  p2_3: {fileID: 2800000, guid: d09b8e6c4553aef409cf2583d79ab7ad, type: 3}
-  p2_4: {fileID: 2800000, guid: 05b314e0496d53540be5e063002a6ef9, type: 3}
-  phone: {fileID: 2800000, guid: 6b4088809934a2f46a4473b3f1b01261, type: 3}
-  signCode: {fileID: 2800000, guid: 1bc9a67f5747fad4488b21aeb8f06811, type: 3}
-  player: {fileID: 100527732}
-  diary: {fileID: 1375599073}
-  page: 0
   prevButton: {fileID: 1247168915}
   nextButton: {fileID: 1326868404}
+  plusB0: {fileID: 2065125916}
+  plusB1: {fileID: 296180055}
+  plusB2: {fileID: 74958072}
+  minusB0: {fileID: 1844468878}
+  minusB1: {fileID: 1055982364}
+  minusB2: {fileID: 1959278781}
   inputP1_1: {fileID: 1128827857}
   inputP1_2: {fileID: 1349315804}
   inputP1_3: {fileID: 601415101}
@@ -3541,12 +3533,21 @@ MonoBehaviour:
   inputP3_4: {fileID: 1483006987}
   inputP3_Answer: {fileID: 178870898}
   inputFinal: {fileID: 2106217617}
-  plusB0: {fileID: 2065125916}
-  plusB1: {fileID: 296180055}
-  plusB2: {fileID: 74958072}
-  minusB0: {fileID: 1844468878}
-  minusB1: {fileID: 1055982364}
-  minusB2: {fileID: 1959278781}
+  player: {fileID: 100527732}
+  diary: {fileID: 1375599073}
+  page: 0
+  inven: {fileID: 100527733}
+  puzzle1: {fileID: 2800000, guid: e03fc633296da5f419d14a4586ae5815, type: 3}
+  puzzle2: {fileID: 2800000, guid: fa5b93d50a9b0ec49bbd2250c1637ff6, type: 3}
+  puzzle3: {fileID: 2800000, guid: b90becdedad812646ba57a8c1dde7e3e, type: 3}
+  minusCode: {fileID: 2800000, guid: b1b5b138cd7d622429a1aa2b1efe2c16, type: 3}
+  plusCode: {fileID: 2800000, guid: 545e12c74dcba0d4bba859bcc1a26969, type: 3}
+  p2_1: {fileID: 2800000, guid: a5f1e0094c5afa8479f5de331b500875, type: 3}
+  p2_2: {fileID: 2800000, guid: a9a532fca71447348b799f636cee994e, type: 3}
+  p2_3: {fileID: 2800000, guid: d09b8e6c4553aef409cf2583d79ab7ad, type: 3}
+  p2_4: {fileID: 2800000, guid: 05b314e0496d53540be5e063002a6ef9, type: 3}
+  phone: {fileID: 2800000, guid: 6b4088809934a2f46a4473b3f1b01261, type: 3}
+  signCode: {fileID: 2800000, guid: 1bc9a67f5747fad4488b21aeb8f06811, type: 3}
 --- !u!1001 &426051286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6032,6 +6033,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4938416931151092159, guid: 08e091500e68ded43b4abfb1b3f718d0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.009
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 08e091500e68ded43b4abfb1b3f718d0,
         type: 3}
@@ -13218,9 +13224,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28cd41d1889a084baf06ef46d49a0d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prettyName: Key Item
+  prettyName: Diary
   attachedToWorldState: 1
-  inventoryImage: {fileID: 21300000, guid: e688ccb47b0251f488833f1bd9b42cf9, type: 3}
+  inventoryImage: {fileID: 21300000, guid: 8f915c7cb67f9354786d0ffba8d772bd, type: 3}
 --- !u!114 &1375599078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13236,6 +13242,19 @@ MonoBehaviour:
   player: {fileID: 100527739}
   throwable: 0
   outlineWidth: 0.2
+--- !u!65 &1375599079
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375599073}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.025680248, y: 0.12826, z: 0.08712}
+  m_Center: {x: -0.00000047683716, y: 0.06400096, z: 0.00000047683716}
 --- !u!1 &1381933743
 GameObject:
   m_ObjectHideFlags: 0
