@@ -38,7 +38,9 @@ public class TimeShifter : MonoBehaviour
         clock.hour = ws00.clock_hour;
         clock.minutes = ws00.clock_minute;
 
-        ResetWorldStates();
+        // set starting world state, set to 0 when not debugging
+        SetWorldState(2);
+
         DisplayManager.Instance.SetHelpText("");
     }
 
@@ -97,18 +99,17 @@ public class TimeShifter : MonoBehaviour
     }
 
     /// <summary>
-    /// Set all objects to be hidden except for the objects in the first world.
-    /// Lets all objects be enabled in editor without showing them in the game.
+    /// Set all objects to be hidden except for the objects in the selected world state
     /// </summary>
-    private void ResetWorldStates()
+    private void SetWorldState(int worldState)
     {
-        WorldStates[0].containerObject.SetActive(true);
-        for (int i = 1; i < WorldState.MAX_WORLDNUM; i++)
+        for (int i = 0; i < WorldState.MAX_WORLDNUM; i++)
         {
-            foreach (GameObject k in WorldStates[i].keyItems)
+            if (i == worldState)
             {
-                WorldStates[i].containerObject.SetActive(false);
+                continue;
             }
+            WorldStates[i].containerObject.SetActive(false);
         }
     }
 
