@@ -20,7 +20,7 @@ public abstract class IWorldState
         }
         else
         {
-            string path = "Assets/Data/" + worldNum + ".dat";
+            string path = Application.streamingAssetsPath + "/Data/" + worldNum + ".dat";
             if ( File.Exists(path) )
             {
                 string jsonData = File.ReadAllText(path);

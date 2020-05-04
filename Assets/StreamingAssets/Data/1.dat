@@ -1,0 +1,11 @@
+{
+	"unique_objects" : 
+		[
+			"doorKey_2"
+		],
+	
+	"clock_hour" : 6,
+	"clock_minute" : 45,
+	"name": "Second World",
+	"object_container_name" : "world2Objects"
+}

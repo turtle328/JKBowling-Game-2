@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class DoorController : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class DoorController : MonoBehaviour
         //If Key is needed and the KeyGameObject is not assigned, stop playing and throw error
         if (keyNeeded && keyGameObject == null)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+            //UnityEditor.EditorApplication.isPlaying = false;
             Debug.LogError("Assign Key GameObject");
         }
     }
