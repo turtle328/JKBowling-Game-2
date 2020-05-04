@@ -90,6 +90,7 @@ public class Scene3Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // set everything to false
         PageSetFalse();
 
         nextButton.SetActive(false);
@@ -108,62 +109,71 @@ public class Scene3Manager : MonoBehaviour
     void Update()
     {
         // check if the player has the diary, and if they open it or close it
-        for (int i = 0; i < Inventory.MAX_INVENTORY; i++)
+        if (Input.GetKeyDown(KeyCode.O))
         {
-            if (Input.GetKeyDown(KeyCode.O) && inven.inventory[i] == diary)
+            for (int i = 0; i < Inventory.MAX_INVENTORY; i++)
             {
-                if (diaryOpen)
+                if (inven.inventory[i] == diary)
                 {
-                    player.GetComponent<FirstPersonController>().enabled = true;
-                    PageSetFalse();
-                    Input1False();
-                    Input2False();
-                    Input3False();
-                    ButtonPMFalse();
-                    nextButton.SetActive(false);
-                    prevButton.SetActive(false);
-                    inputFinal.SetActive(false);
-                    // make it so the cursor is invisble
-                    Cursor.visible = false;
-                    diaryOpen = false;
-                    page = 0;
+                    if (diaryOpen)
+                    {
+                        player.GetComponent<FirstPersonController>().enabled = true;
+                        PageSetFalse();
+                        Input1False();
+                        Input2False();
+                        Input3False();
+                        ButtonPMFalse();
+                        nextButton.SetActive(false);
+                        prevButton.SetActive(false);
+                        inputFinal.SetActive(false);
+                        // make it so the cursor is invisble
+                        Cursor.visible = false;
+                        diaryOpen = false;
+                        page = 0;
+                    }
+                    else
+                    {
+                        player.GetComponent<FirstPersonController>().enabled = false;
+                        nextButton.SetActive(true);
+                        prevButton.SetActive(true);
+                        // set these true so it isn't called repetedly in onGUI
+                        minusB0.SetActive(true);
+                        minusB1.SetActive(true);
+                        minusB2.SetActive(true);
+                        // make it so the cursor is visable and can be moved
+                        Cursor.visible = true;
+                        Cursor.lockState = CursorLockMode.None;
+                        diaryOpen = true;
+                        page = 1;
+                    }
+
                 }
-                else
-                {
-                    player.GetComponent<FirstPersonController>().enabled = false;
-                    nextButton.SetActive(true);
-                    prevButton.SetActive(true);
-                    // make it so the cursor is visable and can be moved
-                    Cursor.visible = true;
-                    Cursor.lockState = CursorLockMode.None;
-                    diaryOpen = true;
-                    page = 1;
-                }
-
             }
+        }
 
-            if (page == 0)
-            {
-                player.GetComponent<FirstPersonController>().enabled = true;
-                PageSetFalse();
-                Input1False();
-                Input2False();
-                Input3False();
-                ButtonPMFalse();
-                nextButton.SetActive(false);
-                prevButton.SetActive(false);
-                inputFinal.SetActive(false);
-                // make it so the cursor is invisble
-                Cursor.visible = false;
-                diaryOpen = false;
-                page = 0;
-            }
+        // close the book when they complete the final puzzle
+        if (page == 0)
+        {
+            player.GetComponent<FirstPersonController>().enabled = true;
+            PageSetFalse();
+            Input1False();
+            Input2False();
+            Input3False();
+            ButtonPMFalse();
+            nextButton.SetActive(false);
+            prevButton.SetActive(false);
+            inputFinal.SetActive(false);
+            // make it so the cursor is invisble
+            Cursor.visible = false;
+            diaryOpen = false;
+            page = 0;
+        }
 
 
-            if (diary != null && inven.GetCurrentItem() == diary)
-            {
-                DisplayManager.Instance.SetHelpText("Press 'O' to open/close Diary");
-            }
+        // print the diary help text
+        if (diary != null && inven.GetCurrentItem() == diary)
+        {
+            DisplayManager.Instance.SetHelpText("Press 'O' to open and close Diary");
         }
     }
 
@@ -215,6 +225,7 @@ public class Scene3Manager : MonoBehaviour
             PageSetFalse();
             Input1False();
             Input2False();
+            ButtonPMFalse();
             inputFinal.SetActive(false);
             // make sure what is meant to be there is
             Puzzle3Set();
@@ -245,9 +256,6 @@ public class Scene3Manager : MonoBehaviour
         inputP1_2.SetActive(true);
         inputP1_3.SetActive(true);
         inputP1_4.SetActive(true);
-        minusB0.SetActive(true);
-        minusB1.SetActive(true);
-        minusB2.SetActive(true);
         inputP1_Answer.SetActive(true);
     }
 
@@ -392,7 +400,11 @@ public class Scene3Manager : MonoBehaviour
         {
             page++;
         }
-
+        // set these true so it isn't called repetedly in onGUI
+        // if they aren't needed they will be set false instantly
+        minusB0.SetActive(true);
+        minusB1.SetActive(true);
+        minusB2.SetActive(true);
     }
     public void prevPage()
     {
@@ -404,6 +416,11 @@ public class Scene3Manager : MonoBehaviour
         {
             page--;
         }
+        // set these true so it isn't called repetedly in onGUI
+        // if they aren't needed they will be set false instantly
+        minusB0.SetActive(true);
+        minusB1.SetActive(true);
+        minusB2.SetActive(true);
     }
 
     
