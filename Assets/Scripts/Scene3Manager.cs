@@ -232,8 +232,8 @@ public class Scene3Manager : MonoBehaviour
 
             // draw the standard texture2ds
             GUI.DrawTexture(new Rect(yMin3 + 680, yMin3 + 700, puzzle3Width, puzzle3Height), puzzle3);
-            GUI.DrawTexture(new Rect(xMin3 + 150, yMin3 + 20, p2_1Width, p2_1Height), p2_1);
-            GUI.DrawTexture(new Rect(xMin3 + 460, yMin3 + 180, p2_2Width, p2_2Height), p2_2);
+            GUI.DrawTexture(new Rect(xMin3 + 150, yMin3 + 50, p2_1Width, p2_1Height), p2_1);
+            GUI.DrawTexture(new Rect(xMin3 + 460, yMin3 + 200, p2_2Width, p2_2Height), p2_2);
             GUI.DrawTexture(new Rect(xMin3 + 600, yMin3 + 800, p2_3Width, p2_3Height), p2_3);
             GUI.DrawTexture(new Rect(xMin3 + 20, yMin3 + 600, p2_4Width, p2_4Height), p2_4);
         }
