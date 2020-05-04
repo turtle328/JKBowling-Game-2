@@ -47,6 +47,13 @@ public class DisplayManager : MonoBehaviour
 
     public void SetHelpText(string text)
     {
+        // don't set text again if it's the same
+        if (text == helpText.text && text == nextText)
+        {
+            showText = true;
+            return;
+        }
+
         // An empty string indicates we are removing the display
         if ( text == "" )
         {

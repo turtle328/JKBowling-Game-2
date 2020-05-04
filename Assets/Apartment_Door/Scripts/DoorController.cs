@@ -67,8 +67,10 @@ public class DoorController : MonoBehaviour
         {
             if (doorState == DoorState.Opened)
             {
-                txtToDisplay.GetComponent<Text>().text = "Press 'E' to Close";
+                // txtToDisplay.GetComponent<Text>().text = "Press 'E' to Close";
+                txtToDisplay.GetComponent<Text>().text = "";
                 doorCollider.enabled = false;
+                Destroy(this);
             }
             else if (doorState == DoorState.Closed || gotKey)
             {
@@ -107,11 +109,11 @@ public class DoorController : MonoBehaviour
                 firstDoorOpened = true;
             }
 
-            if (doorState == DoorState.Opened && !doorAnim.isPlaying)
-            {
-                doorAnim.Play("Door_Close");
-                doorState = DoorState.Closed;
-            }
+            //if (doorState == DoorState.Opened && !doorAnim.isPlaying)
+            //{
+            //    doorAnim.Play("Door_Close");
+            //    doorState = DoorState.Closed;
+            //}
 
             if (doorState == DoorState.Jammed && !gotKey)
             {

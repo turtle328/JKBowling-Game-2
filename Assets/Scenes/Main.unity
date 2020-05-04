@@ -3536,6 +3536,7 @@ MonoBehaviour:
   player: {fileID: 100527732}
   diary: {fileID: 1375599073}
   page: 0
+  diaryOpen: 0
   inven: {fileID: 100527733}
   puzzle1: {fileID: 2800000, guid: e03fc633296da5f419d14a4586ae5815, type: 3}
   puzzle2: {fileID: 2800000, guid: fa5b93d50a9b0ec49bbd2250c1637ff6, type: 3}
@@ -6271,7 +6272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &729097789
 Transform:
   m_ObjectHideFlags: 0
@@ -10748,7 +10749,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1118228403
 Transform:
   m_ObjectHideFlags: 0
@@ -14509,6 +14510,31 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1627035645529845404, guid: 0273ccaa40ac7074094e686be305aca9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e33fc57f17730344aff5bdc4e718923, type: 2}
+    - target: {fileID: 2322129252177150769, guid: 0273ccaa40ac7074094e686be305aca9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e33fc57f17730344aff5bdc4e718923, type: 2}
+    - target: {fileID: 2761238683423168844, guid: 0273ccaa40ac7074094e686be305aca9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e33fc57f17730344aff5bdc4e718923, type: 2}
+    - target: {fileID: 4512904464404735571, guid: 0273ccaa40ac7074094e686be305aca9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e33fc57f17730344aff5bdc4e718923, type: 2}
+    - target: {fileID: 5069446678055360757, guid: 0273ccaa40ac7074094e686be305aca9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e33fc57f17730344aff5bdc4e718923, type: 2}
     - target: {fileID: 6532189485910962333, guid: 0273ccaa40ac7074094e686be305aca9,
         type: 3}
       propertyPath: standNum
@@ -14569,11 +14595,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7319263888760679042, guid: 0273ccaa40ac7074094e686be305aca9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e33fc57f17730344aff5bdc4e718923, type: 2}
     - target: {fileID: 7746086995897850582, guid: 0273ccaa40ac7074094e686be305aca9,
         type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8543329230725679786, guid: 0273ccaa40ac7074094e686be305aca9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e33fc57f17730344aff5bdc4e718923, type: 2}
     - target: {fileID: 8619685178527558782, guid: 0273ccaa40ac7074094e686be305aca9,
         type: 3}
       propertyPath: m_Name
