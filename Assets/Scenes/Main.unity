@@ -20189,7 +20189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 100527739}
   throwable: 0
-  outlineWidth: 0.2
+  outlineWidth: 0.001
 --- !u!65 &1876008763
 BoxCollider:
   m_ObjectHideFlags: 0
