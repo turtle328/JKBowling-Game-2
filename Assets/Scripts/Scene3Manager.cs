@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Scene3Manager : MonoBehaviour
 {
+    public GameObject cake;
+
     // instances of the pages
     public GameObject page1;
     public GameObject page2;
@@ -387,6 +389,8 @@ public class Scene3Manager : MonoBehaviour
             // close the diary
             page = 0;
             inven.RemoveCurrentItem();
+            cake.SetActive(true);
+            DisplayManager.Instance.TriggerEventText("Something smells good...");
         }
     }
     // go to the next or prev page when the buttons are clicked

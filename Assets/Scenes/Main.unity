@@ -3830,7 +3830,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 5bf103374630bc44e88df03913bfa4d1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 34
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 5bf103374630bc44e88df03913bfa4d1,
         type: 3}
@@ -3912,6 +3912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f26a299adfc7d48a1462fdca130615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cake: {fileID: 1249089591}
   page1: {fileID: 800029304}
   page2: {fileID: 451991069}
   page3: {fileID: 582725156}
@@ -9541,7 +9542,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: ced79d7907460234691b857e5aade00d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 36
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ced79d7907460234691b857e5aade00d,
         type: 3}
@@ -11733,7 +11734,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 76c684b788b0db34f902a92d27ecab0f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 35
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 76c684b788b0db34f902a92d27ecab0f,
         type: 3}
@@ -13142,6 +13143,116 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1247168915}
   m_CullTransparentMesh: 0
+--- !u!1001 &1249089590
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 658443175}
+    m_Modifications:
+    - target: {fileID: -4216859302048453862, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.3540516
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.059952
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.394724
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: -1389157037694621049, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8bd6c1e8f3c3125479cd820e755df685, type: 2}
+    - target: {fileID: -927199367670048503, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_Name
+      value: Chocolate Cake
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726396221703951952, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7c8ff90b2f47dbd4da381f58317062f2, type: 2}
+    - target: {fileID: 5886502845473324906, guid: c82d7dc59971be8469c73a4593ffdf4d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31bb3e6208e96bf46ad4f22a4ce7a014, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c82d7dc59971be8469c73a4593ffdf4d, type: 3}
+--- !u!1 &1249089591 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: c82d7dc59971be8469c73a4593ffdf4d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1249089590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1264916296
 GameObject:
   m_ObjectHideFlags: 0
@@ -17417,7 +17528,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 371e6d1a3de888948ae9961349a313d2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 37
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 371e6d1a3de888948ae9961349a313d2,
         type: 3}
