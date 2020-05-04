@@ -33,7 +33,10 @@ public class Puzzle02Manager : MonoBehaviour
 
     // TRANSITION TO PUZZLE SET 03
     public GameObject bedroomKey;
+    public GameObject door;
+    DoorController dc;
     bool transitioned = false;
+    public TimeShifter ts;
 
     private void Awake()
     {
@@ -54,12 +57,20 @@ public class Puzzle02Manager : MonoBehaviour
             figureStand01.GetComponentInChildren<ActionFigurePoser>(true)._mngr = Instance;
             figureStand02.GetComponentInChildren<ActionFigurePoser>(true)._mngr = Instance;
             figureStand03.GetComponentInChildren<ActionFigurePoser>(true)._mngr = Instance;
+
+            dc = door.GetComponent<DoorController>();
         }
     }
 
     void Update()
     {
-        
+        if ( !transitioned && dc.firstDoorOpened )
+        {
+            transitioned = true;
+            DisplayManager.Instance.TriggerEventText("The world seems different...");
+            ts.ChangeWorldState(2);
+            this.enabled = false;
+        }
     }
 
 
@@ -68,6 +79,10 @@ public class Puzzle02Manager : MonoBehaviour
         if ( chosenPattern == 1 )
         {
             OnSolvedPatternPuzzle();
+        }
+        else
+        {
+            _displayMngr.TriggerEventText("That doesn't look quite right...");
         }
     }
 

@@ -173,7 +173,7 @@ public class Scene3Manager : MonoBehaviour
         // print the diary help text
         if (diary != null && inven.GetCurrentItem() == diary)
         {
-            DisplayManager.Instance.SetHelpText("Press 'O' to open and close Diary");
+            DisplayManager.Instance.SetHelpText("Press 'O' to toggle Diary");
         }
     }
 

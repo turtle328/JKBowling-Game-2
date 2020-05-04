@@ -49,7 +49,7 @@ public class TimeShifter : MonoBehaviour
     /// Updates the world to reflect the provided world state
     /// </summary>
     /// <param name="newWorldState"></param>
-    private void ChangeWorldState(int newWorldState)
+    public void ChangeWorldState(int newWorldState)
     {
         if ( newWorldState >= 0 && newWorldState < WorldState.MAX_WORLDNUM )
         {
