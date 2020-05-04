@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ActionFigurePoser : MonoBehaviour
 {
-    Puzzle02Manager _mngr;
+    public Puzzle02Manager _mngr { get; set; }
     public bool isActive = true;
 
     Animator animator;
@@ -23,6 +23,7 @@ public class ActionFigurePoser : MonoBehaviour
     {
         
     }
+
 
     private void OnMouseEnter()
     {
@@ -48,7 +49,10 @@ public class ActionFigurePoser : MonoBehaviour
 
                 animator.SetInteger("SelectedPose", selectedPose);
 
-                _mngr.OnChangedMannequinPuzzle(standNum, selectedPose);
+                if (_mngr.enabled)
+                {
+                    _mngr.OnChangedMannequinPuzzle(standNum, selectedPose);
+                }
             }
         }
     }

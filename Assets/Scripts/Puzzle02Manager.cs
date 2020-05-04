@@ -7,11 +7,14 @@ public class Puzzle02Manager : MonoBehaviour
     public static Puzzle02Manager Instance { get; private set; }
 
     public DisplayManager _displayMngr;
+    public Inventory inventory;
+    bool solvedFirstPart = false;
 
     // BEAR SHIRT PUZZLE
-    public int[] knownPatterns;
+    public GameObject[] patterns;
+    public GameObject cloth;
     public GameObject stuffedToy;
-    public GameObject rag;
+    public GameObject mannequin01;
 
     // MANNEQUIN POSE PUZZLE
     public GameObject figureStand01;
@@ -26,7 +29,11 @@ public class Puzzle02Manager : MonoBehaviour
     public GameObject thirdPlaceStand;
     public GameObject[] RaceSolution;   // 0 is first, 1 is second, 2 is third
     public GameObject[] currentRacePositions;
+    public GameObject mannequin02;
 
+    // TRANSITION TO PUZZLE SET 03
+    public GameObject bedroomKey;
+    bool transitioned = false;
 
     private void Awake()
     {
@@ -37,13 +44,28 @@ public class Puzzle02Manager : MonoBehaviour
         else
         {
             Instance = this;
+            firstPlaceStand.GetComponent<RacePlacement>().enabled = true;
+            secondPlaceStand.GetComponent<RacePlacement>().enabled = true;
+            thirdPlaceStand.GetComponent<RacePlacement>().enabled = true;
+
+            cloth.GetComponentInChildren<Pickup>().enabled = true;
+            stuffedToy.GetComponentInChildren<PatternManager>(true)._mngr = Instance;
+
+            figureStand01.GetComponentInChildren<ActionFigurePoser>(true)._mngr = Instance;
+            figureStand02.GetComponentInChildren<ActionFigurePoser>(true)._mngr = Instance;
+            figureStand03.GetComponentInChildren<ActionFigurePoser>(true)._mngr = Instance;
         }
+    }
+
+    void Update()
+    {
+        
     }
 
 
     public void OnChangedPatternPuzzle(int chosenPattern)
     {
-        if ( chosenPattern == 0 )
+        if ( chosenPattern == 1 )
         {
             OnSolvedPatternPuzzle();
         }
@@ -52,9 +74,32 @@ public class Puzzle02Manager : MonoBehaviour
     void OnSolvedPatternPuzzle()
     {
         // Disable the stuffed toy interaction
-        // stuffedToy.GetComponent<PatternManager>().enabled = false;
-        
+        stuffedToy.GetComponent<PatternManager>().enabled = false;
+
+        // Get rid of the patterns from the inventory
+        for ( int i = 0; i < Inventory.MAX_INVENTORY; i++ )
+        {
+            if ( inventory.inventory[i] != null )
+            {
+                if ( inventory.inventory[i].name.Contains("Pattern") )
+                {
+                    inventory.RemoveItemAtIndex(i);
+                }
+            }
+        }
+
+        // Destroy any patterns the player didn't pick up
+        foreach ( GameObject pattern in patterns )
+        {
+            if ( pattern != null )
+            {
+                Destroy(pattern);
+            }
+        }
+
         // Spawn a mannequin
+        mannequin01.SetActive(true);
+        ShowMannequinText();
     }
 
 
@@ -85,6 +130,9 @@ public class Puzzle02Manager : MonoBehaviour
         thirdPlaceStand.GetComponent<RacePlacement>().isActive = false;
 
         // Spawn a mannequin
+        firstPlaceStand.GetComponent<RacePlacement>().currentCar.SetActive(false);
+        mannequin02.SetActive(true);
+        ShowMannequinText();
     }
 
 
@@ -115,6 +163,24 @@ public class Puzzle02Manager : MonoBehaviour
         figureStand03.GetComponentInChildren<ActionFigurePoser>().isActive = false;
 
         // Spawn the next bedroom key
+        bedroomKey.SetActive(true);
+    }
+
+
+    void ShowMannequinText()
+    {
+        string msg = "";
+        if ( solvedFirstPart )
+        {
+            msg = "Another model...?";
+        }
+        else
+        {
+            solvedFirstPart = true;
+            msg = "Where did this model come from?";
+        }
+
+        _displayMngr.TriggerEventText(msg);
     }
 
 }

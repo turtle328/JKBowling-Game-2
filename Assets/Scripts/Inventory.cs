@@ -84,11 +84,10 @@ public class Inventory : MonoBehaviour
                 // grab object to check if it's a throwable
                 Pickup p = inventory[curIndex].GetComponent<Pickup>();
 
-                p.transform.position = transform.position + transform.forward * 2;
-
                 if (p.throwable)
                 // throw it
                 {
+                    p.transform.position = transform.position + transform.forward * 2;
                     // get rigidbody of object
                     Rigidbody rb = p.GetComponent<Rigidbody>();
                     RaycastHit hit;
@@ -112,11 +111,11 @@ public class Inventory : MonoBehaviour
                         //originSphere.transform.position = origin;
                         //originSphere.GetComponent<Renderer>().material.color = Color.red;
                     }
-                }
 
-                inventory[curIndex].SetActive(true);
-                inventory[curIndex] = null;
-                DisplayManager.Instance.SetImage(curIndex, null);
+                    inventory[curIndex].SetActive(true);
+                    inventory[curIndex] = null;
+                    DisplayManager.Instance.SetImage(curIndex, null);
+                }
             }
         }
     }
@@ -130,6 +129,21 @@ public class Inventory : MonoBehaviour
     {
         inventory[curIndex] = null;
         DisplayManager.Instance.SetImage(curIndex, null);
+        DisplayManager.Instance.SetHelpText("");
+    }
+
+    public void ReplaceCurrentItem(GameObject newItem)
+    {
+        KeyItem k = newItem.GetComponent<KeyItem>();
+        inventory[curIndex] = newItem;
+        DisplayManager.Instance.SetImage(curIndex, k.inventoryImage);
+        DisplayManager.Instance.SetHelpText("");
+    }
+
+    public void RemoveItemAtIndex(int index)
+    {
+        inventory[index] = null;
+        DisplayManager.Instance.SetImage(index, null);
         DisplayManager.Instance.SetHelpText("");
     }
 }

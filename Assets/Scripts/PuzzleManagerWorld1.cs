@@ -6,6 +6,7 @@ public class PuzzleManagerWorld1 : MonoBehaviour
 {
     // singleton implementation
     public static PuzzleManagerWorld1 Instance { get; private set; }
+    public GameObject nextPuzzleManager;
 
     // is puzzle complete?
     public bool puzzleComplete = false;
@@ -47,6 +48,8 @@ public class PuzzleManagerWorld1 : MonoBehaviour
             puzzleComplete = true;
             DisplayManager.Instance.TriggerEventText("The world seems different...");
             ts.incrementWorldState();
+            nextPuzzleManager.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 

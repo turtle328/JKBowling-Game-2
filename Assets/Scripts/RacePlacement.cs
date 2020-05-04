@@ -22,7 +22,7 @@ public class RacePlacement : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (isActive)
+        if (isActive && this.enabled )
         {
             if (currentCar == null)
             {
@@ -44,7 +44,7 @@ public class RacePlacement : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (isActive)
+        if (isActive && this.enabled )
         {
             DisplayManager.Instance.SetHelpText("");
         }
@@ -52,7 +52,7 @@ public class RacePlacement : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if ( isActive )
+        if ( isActive && this.enabled )
         {
             if (Input.GetKeyDown(KeyCode.E))
             {

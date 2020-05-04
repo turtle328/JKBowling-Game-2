@@ -24,50 +24,68 @@ public class Pickup : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        DisplayManager.Instance.SetHelpText(gameObject.GetComponent<KeyItem>().prettyName);
-        GetComponent<Renderer>().material.SetFloat("_Outline", outlineWidth);
+        if ( this.enabled )
+        {
+            DisplayManager.Instance.SetHelpText(gameObject.GetComponent<KeyItem>().prettyName);
+            if (GetComponent<Renderer>() != null)
+            {
+                GetComponent<Renderer>().material.SetFloat("_Outline", outlineWidth);
+            }
+        }
     }
 
     private void OnMouseExit()
     {
-        DisplayManager.Instance.SetHelpText("");
-        GetComponent<Renderer>().material.SetFloat("_Outline", 0.0f);
+        if ( this.enabled )
+        {
+            DisplayManager.Instance.SetHelpText("");
+            if (GetComponent<Renderer>() != null)
+            {
+                GetComponent<Renderer>().material.SetFloat("_Outline", 0.0f);
+            }
+        }
     }
 
     private void OnMouseOver()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (this.enabled)
         {
-            DisplayManager.Instance.SetHelpText("");
-            GetComponent<Renderer>().material.SetFloat("_Outline", 0.0f);
-
-            // does it have key controller? then give key to player
-            KeyController key = GetComponent<KeyController>();
-            if (key != null)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                key.GiveKey();
-                return;
-            }
-
-            int index = 0;
-            while (inv[index] != null)
-            {
-                index++;
-                if ( index >= Inventory.MAX_INVENTORY )
+                DisplayManager.Instance.SetHelpText("");
+                if (GetComponent<Renderer>() != null)
                 {
-                    break;
+                    GetComponent<Renderer>().material.SetFloat("_Outline", 0.0f);
                 }
-            }
 
-            if (index < Inventory.MAX_INVENTORY)
-            {
-                inv[index] = gameObject;
-                
-                KeyItem k = gameObject.GetComponent<KeyItem>();
-                k.attachedToWorldState = false;
-                DisplayManager.Instance.SetImage(index, k.inventoryImage);
-                
-                gameObject.SetActive(false);
+                // does it have key controller? then give key to player
+                KeyController key = GetComponent<KeyController>();
+                if (key != null)
+                {
+                    key.GiveKey();
+                    return;
+                }
+
+                int index = 0;
+                while (inv[index] != null)
+                {
+                    index++;
+                    if (index >= Inventory.MAX_INVENTORY)
+                    {
+                        break;
+                    }
+                }
+
+                if (index < Inventory.MAX_INVENTORY)
+                {
+                    inv[index] = gameObject;
+
+                    KeyItem k = gameObject.GetComponent<KeyItem>();
+                    k.attachedToWorldState = false;
+                    DisplayManager.Instance.SetImage(index, k.inventoryImage);
+
+                    gameObject.SetActive(false);
+                }
             }
         }
     }
